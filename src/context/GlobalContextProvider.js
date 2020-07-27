@@ -6,10 +6,10 @@ export const GlobalDispatchContext = createContext()
 
 const initialState = {
   tabs: [
-    { id: "tab-0", path: "/", content: "Home" },
-    { id: "tab-1", path: "/stories", content: "Stories" },
-    { id: "tab-2", path: "/portfolio", content: "Portfolio" },
-    { id: "tab-3", path: "/about", content: "Bout" },
+    { id: "tab-0", path: "/", content: "Home", color: "#8fcfd1" },
+    { id: "tab-1", path: "/stories", content: "Stories", color: "#f6ab6c" },
+    { id: "tab-2", path: "/portfolio", content: "Portfolio", color: "#96bb7c" },
+    { id: "tab-3", path: "/about", content: "Bout", color: "#eebb4d" },
   ],
   theme: "light",
 }

@@ -6,6 +6,8 @@ import {
   GlobalStateContext,
 } from "../../context/GlobalContextProvider"
 
+const colors = ["#8fcfd1", "#f6ab6c", "#96bb7c", "#eebb4d"]
+
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
@@ -16,34 +18,28 @@ const reorder = (list, startIndex, endIndex) => {
 
 const grid = 8
 
-const getTabItemStyle = (isDragging, draggableStyle) => ({
+const getTabItemStyle = (isDragging, draggableStyle, index) => ({
   userSelect: "none",
   padding: grid * 2,
   margin: `0 ${grid}px 0 0`,
-  borderRadius: 10,
-  background: isDragging ? "#96bb7c" : "#eebb4d",
+  //background: isDragging ? "#96bb7c" : "#eebb4d",
+  //background: colors[index % colors.length],
   ...draggableStyle,
   textTransform: "uppercase",
+  fontWeight: 600,
 })
 
 const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? "#fccbcb" : "#8fcfd1",
+  background: isDraggingOver ? "#fccbcb" : "#fccbcb",
   display: "flex",
-  padding: grid,
   overflow: "auto",
 })
 
 const Header = props => {
   const dispatch = useContext(GlobalDispatchContext)
-  console.log(dispatch)
+  //console.log(dispatch)
   const state = useContext(GlobalStateContext)
-  console.log(state)
-  // const [tabs, setTabs] = useState([
-  //   { id: "tab-0", path: "/", content: "Home" },
-  //   { id: "tab-1", path: "/stories", content: "Stories" },
-  //   { id: "tab-2", path: "/portfolio", content: "Portfolio" },
-  //   { id: "tab-3", path: "/about", content: "Bout" },
-  // ])
+  //console.log(state)
 
   const handleDragEnd = result => {
     if (!result.destination) {
@@ -62,7 +58,6 @@ const Header = props => {
 
   return (
     <div>
-      <h2>I don't usually smile, but sometimes I do.</h2>
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="droppable" direction="horizontal">
           {(provided, snapshot) => (
@@ -78,10 +73,14 @@ const Header = props => {
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      style={getTabItemStyle(
-                        snapshot.isDragging,
-                        provided.draggableProps.style
-                      )}
+                      style={{
+                        ...getTabItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style,
+                          index
+                        ),
+                        background: tab.color,
+                      }}
                     >
                       <Link
                         style={{ textDecoration: "none", width: "100%" }}
@@ -98,7 +97,7 @@ const Header = props => {
           )}
         </Droppable>
       </DragDropContext>
-      <div>
+      {/* <div>
         <button
           type="button"
           onClick={() => dispatch({ type: "TOGGLE_THEME" })}
@@ -106,7 +105,7 @@ const Header = props => {
           Change Theme
         </button>
         {state.theme}
-      </div>
+      </div> */}
     </div>
   )
 }
