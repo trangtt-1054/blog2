@@ -1,6 +1,10 @@
-import React, { useState } from "react"
+import React, { useContext } from "react"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { Link } from "gatsby"
+import {
+  GlobalDispatchContext,
+  GlobalStateContext,
+} from "../../context/GlobalContextProvider"
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
@@ -29,15 +33,20 @@ const getListStyle = isDraggingOver => ({
   overflow: "auto",
 })
 
-const Header = () => {
-  const [tabs, setTabs] = useState([
-    { id: "tab-0", path: "/", content: "Home" },
-    { id: "tab-1", path: "/stories", content: "Stories" },
-    { id: "tab-2", path: "/portfolio", content: "Portfolio" },
-    { id: "tab-3", path: "/about", content: "Bout" },
-  ])
+const Header = props => {
+  const dispatch = useContext(GlobalDispatchContext)
+  console.log(dispatch)
+  const state = useContext(GlobalStateContext)
+  console.log(state)
+  const { tabs, onDragEnd } = props
+  // const [tabs, setTabs] = useState([
+  //   { id: "tab-0", path: "/", content: "Home" },
+  //   { id: "tab-1", path: "/stories", content: "Stories" },
+  //   { id: "tab-2", path: "/portfolio", content: "Portfolio" },
+  //   { id: "tab-3", path: "/about", content: "Bout" },
+  // ])
 
-  const onDragEnd = result => {
+  const handleDragEnd = result => {
     if (!result.destination) {
       return
     }
@@ -48,13 +57,14 @@ const Header = () => {
       result.destination.index
     )
 
-    setTabs(newTabsOrder)
+    onDragEnd(newTabsOrder)
+    //setTabs(newTabsOrder)
   }
 
   return (
     <div>
       <h2>I don't usually smile, but sometimes I do.</h2>
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="droppable" direction="horizontal">
           {(provided, snapshot) => (
             <div
@@ -89,6 +99,15 @@ const Header = () => {
           )}
         </Droppable>
       </DragDropContext>
+      <div>
+        <button
+          type="button"
+          onClick={() => dispatch({ type: "TOGGLE_THEME" })}
+        >
+          Change Theme
+        </button>
+        {state.theme}
+      </div>
     </div>
   )
 }
