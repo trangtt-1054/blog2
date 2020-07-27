@@ -18,6 +18,8 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "TOGGLE_THEME":
       return { ...state, theme: state.theme === "light" ? "dark" : "light" }
+    case "DRAG_TAB":
+      return { ...state, tabs: action.payload }
     default:
       throw new Error("Bad Action Type")
   }

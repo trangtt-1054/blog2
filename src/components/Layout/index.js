@@ -32,34 +32,11 @@ const getListStyle = isDraggingOver => ({
 })
 
 const Layout = props => {
-  console.log("Layout rendered")
-  const [tabs, setTabs] = useState([
-    { id: "tab-0", path: "/", content: "Home" },
-    { id: "tab-1", path: "/stories", content: "Stories" },
-    { id: "tab-2", path: "/portfolio", content: "Portfolio" },
-    { id: "tab-3", path: "/about", content: "Bout" },
-  ])
-
-  const onDragEnd = newTabsOrder => {
-    // if (!result.destination) {
-    //   return
-    // }
-
-    // const newTabsOrder = reorder(
-    //   tabs,
-    //   result.source.index,
-    //   result.destination.index
-    // )
-
-    setTabs(newTabsOrder)
-    console.log(tabs)
-  }
-
   return (
-    <GlobalContextProvider>
-      <Header tabs={tabs} onDragEnd={onDragEnd} />
+    <div>
+      <Header />
       {props.children}
-    </GlobalContextProvider>
+    </div>
   )
 }
 

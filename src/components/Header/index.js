@@ -38,7 +38,6 @@ const Header = props => {
   console.log(dispatch)
   const state = useContext(GlobalStateContext)
   console.log(state)
-  const { tabs, onDragEnd } = props
   // const [tabs, setTabs] = useState([
   //   { id: "tab-0", path: "/", content: "Home" },
   //   { id: "tab-1", path: "/stories", content: "Stories" },
@@ -52,12 +51,12 @@ const Header = props => {
     }
 
     const newTabsOrder = reorder(
-      tabs,
+      state.tabs,
       result.source.index,
       result.destination.index
     )
-
-    onDragEnd(newTabsOrder)
+    dispatch({ type: "DRAG_TAB", payload: newTabsOrder })
+    //onDragEnd(newTabsOrder)
     //setTabs(newTabsOrder)
   }
 
@@ -72,7 +71,7 @@ const Header = props => {
               style={getListStyle(snapshot.isDraggingOver)}
               {...provided.droppableProps}
             >
-              {tabs.map((tab, index) => (
+              {state.tabs.map((tab, index) => (
                 <Draggable key={tab.id} draggableId={tab.id} index={index}>
                   {(provided, snapshot) => (
                     <div
