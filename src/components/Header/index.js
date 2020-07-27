@@ -6,8 +6,6 @@ import {
   GlobalStateContext,
 } from "../../context/GlobalContextProvider"
 
-const colors = ["#8fcfd1", "#f6ab6c", "#96bb7c", "#eebb4d"]
-
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
