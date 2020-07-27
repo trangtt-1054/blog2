@@ -16,8 +16,10 @@ const getTabItemStyle = (isDragging, draggableStyle) => ({
   userSelect: "none",
   padding: grid * 2,
   margin: `0 ${grid}px 0 0`,
+  borderRadius: 10,
   background: isDragging ? "#96bb7c" : "#eebb4d",
   ...draggableStyle,
+  textTransform: "uppercase",
 })
 
 const getListStyle = isDraggingOver => ({
@@ -29,10 +31,10 @@ const getListStyle = isDraggingOver => ({
 
 const Header = () => {
   const [tabs, setTabs] = useState([
-    { id: "tab-0", path: "/" },
-    { id: "tab-1", path: "/stories" },
-    { id: "tab-2", path: "/portfolio" },
-    { id: "tab-3", path: "/about" },
+    { id: "tab-0", path: "/", content: "Home" },
+    { id: "tab-1", path: "/stories", content: "Stories" },
+    { id: "tab-2", path: "/portfolio", content: "Portfolio" },
+    { id: "tab-3", path: "/about", content: "Bout" },
   ])
 
   const onDragEnd = result => {
@@ -72,11 +74,17 @@ const Header = () => {
                         provided.draggableProps.style
                       )}
                     >
-                      <Link to={tab.path}>{tab.path}</Link>
+                      <Link
+                        style={{ textDecoration: "none", width: "100%" }}
+                        to={tab.path}
+                      >
+                        {tab.content}
+                      </Link>
                     </div>
                   )}
                 </Draggable>
               ))}
+              {provided.placeholder}
             </div>
           )}
         </Droppable>
