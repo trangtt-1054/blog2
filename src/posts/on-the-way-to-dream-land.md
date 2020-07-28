@@ -1,0 +1,9 @@
+---
+title: On The Way To Dream Land
+slug: on-the-way-to-dream-land
+date: 2020-07-28
+meta_title: 6 months to go, I have to speed up
+featureImage: ../images/forest.jpg
+---
+
+This is my 1st Gatsby post written in Markdown!
