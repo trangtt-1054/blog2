@@ -1,0 +1,8 @@
+---
+title: A princess becomes a Front-end developer
+slug: a-princess-becomes-a-front-end-developer
+date: 2020-07-28
+meta_title: I don't know how far I can go, but it worths a try.
+---
+
+This is my 1st Gatsby post written in Markdown!
