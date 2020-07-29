@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import Img from "gatsby-image"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 const PostTemplate = props => {
   const { data } = props
@@ -10,12 +11,13 @@ const PostTemplate = props => {
       <div>
         <h1>{data.mdx.frontmatter.title}</h1>
         <p>{data.mdx.frontmatter.meta_title}</p>
-        <div style={{ width: 500, height: "100%" }}>
+        <div style={{ width: 300 }}>
           <Img
             fluid={data.mdx.frontmatter.featureImage.childImageSharp.fluid}
             alt={data.mdx.frontmatter.title}
           ></Img>
         </div>
+        <MDXRenderer>{data.mdx.body}</MDXRenderer>
       </div>
     </Layout>
   )
@@ -40,6 +42,7 @@ export const query = graphql`
         }
       }
       id
+      body
     }
   }
 `
