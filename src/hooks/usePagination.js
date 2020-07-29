@@ -3,9 +3,7 @@ import { useState } from "react"
 const usePagination = ({ list, perPage }) => {
   const [pageIndex, setPageIndex] = useState(1)
 
-  const hasNextPage = () => {
-    return pageIndex * perPage < list.length
-  }
+  const hasNextPage = pageIndex * perPage < list.length ? true : false
 
   const loadNextPage = () => {
     if (!hasNextPage) {

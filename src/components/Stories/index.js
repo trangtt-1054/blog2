@@ -10,7 +10,7 @@ const PostList = props => {
     list: posts,
     perPage,
   })
-  console.log(filtered)
+  console.log(hasNextPage)
   return (
     <div>
       {filtered.map(post => (
