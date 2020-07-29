@@ -1,13 +1,13 @@
 exports.createPages = async ({ actions, graphql }) => {
   const { data } = await graphql(`
     query {
-      allMarkdownRemark {
+      allMdx(sort: { fields: frontmatter___date, order: DESC }) {
         edges {
           node {
             frontmatter {
+              date
               slug
               meta_title
-              date
               title
             }
             id
@@ -17,24 +17,7 @@ exports.createPages = async ({ actions, graphql }) => {
     }
   `)
 
-  // const postPerPage = 3
-  // const numberOfPages = Math.ceil(
-  //   data.allMarkdownRemark.edges.length / postPerPage
-  // )
-  // Array.from({ length: numberOfPages }).forEach((_, index) => {
-  //   actions.createPage({
-  //     path: index === 0 ? `/` : `/${index + 1}`,
-  //     component: require.resolve("./src/templates/post.js"),
-  //     context: {
-  //       limit: postPerPage,
-  //       skip: index * postPerPage,
-  //       numberOfPages,
-  //       currentPage: index + 1,
-  //     },
-  //   })
-  // })
-
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allMdx.edges
   posts.forEach((post, index) => {
     //const selected = post.node.frontmatter
     actions.createPage({

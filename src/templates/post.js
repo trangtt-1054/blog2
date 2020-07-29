@@ -2,22 +2,23 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import Img from "gatsby-image"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 const PostTemplate = props => {
   const { data } = props
+  console.log(data)
   return (
     <Layout location="/stories">
       <div>
-        <h1>{data.markdownRemark.frontmatter.title}</h1>
-        <p>{data.markdownRemark.frontmatter.meta_title}</p>
-        <div style={{ width: 500, height: "100%" }}>
+        <h1>{data.mdx.frontmatter.title}</h1>
+        <p>{data.mdx.frontmatter.meta_title}</p>
+        <div style={{ width: 300 }}>
           <Img
-            fluid={
-              data.markdownRemark.frontmatter.featureImage.childImageSharp.fluid
-            }
-            alt={data.markdownRemark.frontmatter.title}
+            fluid={data.mdx.frontmatter.featureImage.childImageSharp.fluid}
+            alt={data.mdx.frontmatter.title}
           ></Img>
         </div>
+        <MDXRenderer>{data.mdx.body}</MDXRenderer>
       </div>
     </Layout>
   )
@@ -27,7 +28,7 @@ export default PostTemplate
 
 export const query = graphql`
   query($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+    mdx(id: { eq: $id }) {
       frontmatter {
         date
         slug
@@ -42,6 +43,7 @@ export const query = graphql`
         }
       }
       id
+      body
     }
   }
 `
