@@ -1,6 +1,7 @@
 import React from "react"
 import Layout from "../components/Layout"
-import { graphql, Link } from "gatsby"
+import PostList from "../components/Stories"
+import { graphql } from "gatsby"
 
 const Stories = props => {
   console.log(props)
@@ -12,7 +13,7 @@ const Stories = props => {
   const { uri } = props
   return (
     <Layout location={uri}>
-      {edges.map(post => (
+      {/* {edges.map(post => (
         <div>
           <Link to={`/stories/${post.node.frontmatter.slug}`}>
             <h2>{post.node.frontmatter.title}</h2>
@@ -22,7 +23,8 @@ const Stories = props => {
             {post.node.frontmatter.meta_title}
           </p>
         </div>
-      ))}
+      ))} */}
+      <PostList posts={edges} />
     </Layout>
   )
 }
