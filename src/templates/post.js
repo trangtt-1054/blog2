@@ -8,14 +8,12 @@ const PostTemplate = props => {
   return (
     <Layout location="/stories">
       <div>
-        <h1>{data.markdownRemark.frontmatter.title}</h1>
-        <p>{data.markdownRemark.frontmatter.meta_title}</p>
+        <h1>{data.mdx.frontmatter.title}</h1>
+        <p>{data.mdx.frontmatter.meta_title}</p>
         <div style={{ width: 500, height: "100%" }}>
           <Img
-            fluid={
-              data.markdownRemark.frontmatter.featureImage.childImageSharp.fluid
-            }
-            alt={data.markdownRemark.frontmatter.title}
+            fluid={data.mdx.frontmatter.featureImage.childImageSharp.fluid}
+            alt={data.mdx.frontmatter.title}
           ></Img>
         </div>
       </div>
@@ -27,7 +25,7 @@ export default PostTemplate
 
 export const query = graphql`
   query($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+    mdx(id: { eq: $id }) {
       frontmatter {
         date
         slug

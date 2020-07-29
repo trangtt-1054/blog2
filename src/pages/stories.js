@@ -6,7 +6,7 @@ const Stories = props => {
   console.log(props)
   const {
     data: {
-      allMarkdownRemark: { edges },
+      allMdx: { edges },
     },
   } = props
   const { uri } = props
@@ -31,11 +31,11 @@ export default Stories
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
+    allMdx {
       edges {
         node {
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "MMMM DD, YY")
             title
             slug
             meta_title
