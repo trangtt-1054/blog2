@@ -4,7 +4,6 @@ import PostList from "../components/Stories"
 import { graphql } from "gatsby"
 
 const Stories = props => {
-  console.log(props)
   const {
     data: {
       allMdx: { edges },
