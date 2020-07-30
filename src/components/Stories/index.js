@@ -1,16 +1,51 @@
-import React from "react"
+import React, { useEffect, useContext, useState } from "react"
 import { Link } from "gatsby"
 import usePagination from "../../hooks/usePagination"
+import {
+  GlobalDispatchContext,
+  GlobalStateContext,
+} from "../../context/GlobalContextProvider"
+import { useStaticQuery, graphql } from "gatsby"
 
 const perPage = 3
 
 const PostList = props => {
+  const data = useStaticQuery(graphql`
+    query {
+      allMdx(limit: 3) {
+        edges {
+          node {
+            frontmatter {
+              date(formatString: "MMMM DD, YY")
+              title
+              slug
+              meta_title
+            }
+            id
+          }
+        }
+      }
+    }
+  `)
+  //console.log(data.allMdx.edges)
+  const state = useContext(GlobalStateContext)
+  useEffect(
+    () => dispatch({ type: "FETCH_POSTS", payload: data.allMdx.edges }),
+    []
+  )
+  console.log(state.posts)
+  const dispatch = useContext(GlobalDispatchContext)
   const { posts } = props
   const { filtered, hasNextPage, loadNextPage } = usePagination({
     list: posts,
     perPage,
   })
-  console.log(hasNextPage)
+
+  const handleClick = () => {
+    loadNextPage()
+
+    dispatch({ type: "FETCH_POSTS", payload: filtered })
+  }
   return (
     <div>
       {filtered.map(post => (
@@ -26,7 +61,7 @@ const PostList = props => {
       ))}
       {hasNextPage ? (
         <div style={{ margin: "auto" }}>
-          <button onClick={loadNextPage}>More Rubbish Posts</button>
+          <button onClick={handleClick}>More Rubbish Posts</button>
         </div>
       ) : null}
     </div>
