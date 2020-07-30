@@ -1,19 +1,47 @@
-import React from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "gatsby"
 import usePagination from "../../hooks/usePagination"
+import {
+  GlobalDispatchContext,
+  GlobalStateContext,
+} from "../../context/GlobalContextProvider"
 
 const perPage = 3
 
 const PostList = props => {
+  const dispatch = useContext(GlobalDispatchContext)
+  const state = useContext(GlobalStateContext)
   const { posts } = props
   const { filtered, hasNextPage, loadNextPage } = usePagination({
     list: posts,
     perPage,
   })
-  console.log(hasNextPage)
+
+  const hasMore = state.pageIndex * perPage < posts.length ? true : false
+
+  const seeMore = () => {
+    if (!hasMore) {
+      return
+    }
+    dispatch({ type: "NEXT_PAGE" })
+  }
+
+  const handleClick = () => {
+    if (!hasNextPage) {
+      return
+    }
+    dispatch({ type: "NEXT_PAGE" })
+  }
+
+  const myList = posts.slice(0, state.pageIndex * perPage)
+  console.log(myList)
+
+  //console.log(state)
   return (
     <div>
-      {filtered.map(post => (
+      <p>page: {state.pageIndex}</p>
+      <button onClick={seeMore}>Increase</button>
+      {myList.map(post => (
         <div key={post.node.id}>
           <Link to={`/stories/${post.node.frontmatter.slug}`}>
             <h2>{post.node.frontmatter.title}</h2>
