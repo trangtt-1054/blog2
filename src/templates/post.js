@@ -6,7 +6,6 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 
 const PostTemplate = props => {
   const { data } = props
-  console.log(data)
   return (
     <Layout location="/stories">
       <div>
