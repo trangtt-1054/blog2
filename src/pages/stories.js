@@ -12,17 +12,6 @@ const Stories = props => {
   const { uri } = props
   return (
     <Layout location={uri}>
-      {/* {edges.map(post => (
-        <div>
-          <Link to={`/stories/${post.node.frontmatter.slug}`}>
-            <h2>{post.node.frontmatter.title}</h2>
-          </Link>
-          <p>
-            <span>{post.node.frontmatter.date}</span>
-            {post.node.frontmatter.meta_title}
-          </p>
-        </div>
-      ))} */}
       <PostList posts={edges} />
     </Layout>
   )

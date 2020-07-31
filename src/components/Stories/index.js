@@ -32,11 +32,11 @@ const PostList = props => {
           <Link to={`/stories/${post.node.frontmatter.slug}`}>
             <h2>{post.node.frontmatter.title}</h2>
           </Link>
-          <p>
+          <div>
             <TagList tags={post.node.frontmatter.tags} />
             <span>{post.node.frontmatter.date}</span>
             {post.node.frontmatter.meta_title}
-          </p>
+          </div>
         </div>
       ))}
       {hasMore ? (

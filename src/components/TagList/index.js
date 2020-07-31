@@ -7,7 +7,12 @@ const TagList = props => {
     <div>
       {tags.map((tag, i) => (
         <span key={i} style={{ background: "yellow", marginRight: 10 }}>
-          <Link to={`/stories/tags/${tag.toLowerCase()}`}>{tag}</Link>
+          <Link
+            to={`/stories/tags/${tag.toLowerCase()}`}
+            style={{ textDecoration: "none" }}
+          >
+            {tag}
+          </Link>
         </span>
       ))}
     </div>
