@@ -12,6 +12,7 @@ const initialState = {
     { id: "tab-3", path: "/about", content: "Bout", color: "#eebb4d" },
   ],
   theme: "light",
+  pageIndex: 1,
 }
 
 const reducer = (state, action) => {
@@ -20,6 +21,8 @@ const reducer = (state, action) => {
       return { ...state, theme: state.theme === "light" ? "dark" : "light" }
     case "DRAG_TAB":
       return { ...state, tabs: action.payload }
+    case "NEXT_PAGE":
+      return { ...state, pageIndex: state.pageIndex + 1 }
     default:
       throw new Error("Bad Action Type")
   }
