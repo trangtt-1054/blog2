@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import Img from "gatsby-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
+import TagList from "../components/TagList"
 
 const PostTemplate = props => {
   const { data } = props
@@ -12,6 +13,7 @@ const PostTemplate = props => {
       <div>
         <h1>{data.mdx.frontmatter.title}</h1>
         <p>{data.mdx.frontmatter.meta_title}</p>
+        <TagList tags={data.mdx.frontmatter.tags} />
         <div style={{ width: 300 }}>
           <Img
             fluid={data.mdx.frontmatter.featureImage.childImageSharp.fluid}

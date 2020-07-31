@@ -7,7 +7,13 @@ const Layout = props => {
   const { location } = props
   const activeTab = state.tabs.find(tab => tab.path === location)
   return (
-    <div style={{ background: activeTab.color, height: "100vh" }}>
+    <div
+      style={{
+        background: activeTab.color,
+        height: "100vh",
+        overflow: "auto",
+      }}
+    >
       <Header />
       {props.children}
     </div>
