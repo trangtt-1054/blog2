@@ -9,6 +9,7 @@ exports.createPages = async ({ actions, graphql }) => {
               slug
               meta_title
               title
+              tags
             }
             id
           }

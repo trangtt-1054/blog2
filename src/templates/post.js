@@ -33,6 +33,7 @@ export const query = graphql`
         date
         slug
         title
+        tags
         meta_title
         featureImage {
           childImageSharp {
