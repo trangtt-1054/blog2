@@ -7,7 +7,6 @@ import TagList from "../components/TagList"
 
 const PostTemplate = props => {
   const { data } = props
-  console.log(data)
   return (
     <Layout location="/stories">
       <div>

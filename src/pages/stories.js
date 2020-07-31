@@ -32,7 +32,7 @@ export default Stories
 
 export const query = graphql`
   query {
-    allMdx {
+    allMdx(sort: { fields: frontmatter___date, order: DESC }) {
       edges {
         node {
           frontmatter {
