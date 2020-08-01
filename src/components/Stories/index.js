@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "gatsby"
 import {
   GlobalDispatchContext,
@@ -12,19 +12,78 @@ const PostList = props => {
   const dispatch = useContext(GlobalDispatchContext)
   const state = useContext(GlobalStateContext)
   const { posts } = props
-  const hasMore = state.pageIndex * perPage < posts.length ? true : false
+
+  const allPosts = [...posts]
+  const regex = new RegExp(state.searchTerm, "gi")
+  const searchResults = allPosts.reduce((acc, post) => {
+    if (post.node.frontmatter.title.match(regex)) {
+      acc.push(post)
+    }
+    return acc
+  }, [])
+  const initialSource = state.searchTerm ? searchResults : posts
+  //const [foundPosts, setFoundPosts] = useState([])
+  const [postSource, setPostSource] = useState(initialSource)
+  const hasMore = state.pageIndex * perPage < postSource.length ? true : false
 
   const seeMore = () => {
     if (!hasMore) {
       return
     }
-    dispatch({ type: "NEXT_PAGE" })
+    dispatch({ type: "PAGE_CHANGE", payload: state.pageIndex + 1 })
+    console.log(state.pageIndex)
   }
 
-  const myList = posts.slice(0, state.pageIndex * perPage)
+  const handleChange = e => {
+    console.log(e.target.value)
+    dispatch({ type: "SEARCH", payload: e.target.value })
+    dispatch({ type: "PAGE_CHANGE", payload: 1 })
+    handleSearch(e.target.value)
+  }
 
+  const handleSearch = keyword => {
+    console.log(keyword)
+    //console.log(keyword)
+    // if (!keyword) {
+    //   console.log("clear search")
+    // }
+    const allPosts = [...posts]
+    const regex = new RegExp(keyword, "gi")
+    const searchResults = allPosts.reduce((acc, post) => {
+      if (post.node.frontmatter.title.match(regex)) {
+        acc.push(post)
+      }
+      return acc
+    }, [])
+    console.log(searchResults)
+    setPostSource(searchResults)
+  }
+
+  // const getSource = () => {
+  //   if (state.searchTerm) {
+  //     if (foundPosts.length === 0) {
+  //       handleSearch(state.searchTerm)
+  //     }
+  //     return foundPosts
+  //   }
+  //   return posts
+  // }
+
+  //state.searchTerm && handleSearch(state.searchTerm)
+  const myList = postSource.slice(0, state.pageIndex * perPage)
   return (
     <div>
+      {state.searchTerm && "terms exist"}
+      <div style={{ margin: 20 }}>
+        <input
+          name="search"
+          type=""
+          id="search"
+          placeholder="Search Posts"
+          onChange={handleChange}
+          value={state.searchTerm}
+        />
+      </div>
       {/* <p>page: {state.pageIndex}</p>
       <button onClick={seeMore}>Increase</button> */}
       {myList.map(post => (

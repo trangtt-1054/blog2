@@ -13,6 +13,7 @@ const initialState = {
   ],
   theme: "light",
   pageIndex: 1,
+  searchTerm: "",
 }
 
 const reducer = (state, action) => {
@@ -21,8 +22,10 @@ const reducer = (state, action) => {
       return { ...state, theme: state.theme === "light" ? "dark" : "light" }
     case "DRAG_TAB":
       return { ...state, tabs: action.payload }
-    case "NEXT_PAGE":
-      return { ...state, pageIndex: state.pageIndex + 1 }
+    case "PAGE_CHANGE":
+      return { ...state, pageIndex: action.payload }
+    case "SEARCH":
+      return { ...state, searchTerm: action.payload }
     default:
       throw new Error("Bad Action Type")
   }
