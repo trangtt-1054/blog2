@@ -13,40 +13,7 @@ const PostList = props => {
   const state = useContext(GlobalStateContext)
   const { posts } = props
 
-  const allPosts = [...posts]
-  const regex = new RegExp(state.searchTerm, "gi")
-  const searchResults = allPosts.reduce((acc, post) => {
-    if (post.node.frontmatter.title.match(regex)) {
-      acc.push(post)
-    }
-    return acc
-  }, [])
-  const initialSource = state.searchTerm ? searchResults : posts
-  //const [foundPosts, setFoundPosts] = useState([])
-  const [postSource, setPostSource] = useState(initialSource)
-  const hasMore = state.pageIndex * perPage < postSource.length ? true : false
-
-  const seeMore = () => {
-    if (!hasMore) {
-      return
-    }
-    dispatch({ type: "PAGE_CHANGE", payload: state.pageIndex + 1 })
-    console.log(state.pageIndex)
-  }
-
-  const handleChange = e => {
-    console.log(e.target.value)
-    dispatch({ type: "SEARCH", payload: e.target.value })
-    dispatch({ type: "PAGE_CHANGE", payload: 1 })
-    handleSearch(e.target.value)
-  }
-
-  const handleSearch = keyword => {
-    console.log(keyword)
-    //console.log(keyword)
-    // if (!keyword) {
-    //   console.log("clear search")
-    // }
+  const getSearchedPosts = keyword => {
     const allPosts = [...posts]
     const regex = new RegExp(keyword, "gi")
     const searchResults = allPosts.reduce((acc, post) => {
@@ -55,21 +22,28 @@ const PostList = props => {
       }
       return acc
     }, [])
-    console.log(searchResults)
-    setPostSource(searchResults)
+    return searchResults
   }
 
-  // const getSource = () => {
-  //   if (state.searchTerm) {
-  //     if (foundPosts.length === 0) {
-  //       handleSearch(state.searchTerm)
-  //     }
-  //     return foundPosts
-  //   }
-  //   return posts
-  // }
+  const initialSource = state.searchTerm
+    ? getSearchedPosts(state.searchTerm)
+    : posts
+  const [postSource, setPostSource] = useState(initialSource)
+  const hasMore = state.pageIndex * perPage < postSource.length ? true : false
 
-  //state.searchTerm && handleSearch(state.searchTerm)
+  const seeMore = () => {
+    if (!hasMore) {
+      return
+    }
+    dispatch({ type: "PAGE_CHANGE", payload: state.pageIndex + 1 })
+  }
+
+  const handleChange = e => {
+    dispatch({ type: "SEARCH", payload: e.target.value })
+    dispatch({ type: "PAGE_CHANGE", payload: 1 })
+    setPostSource(getSearchedPosts(e.target.value))
+  }
+
   const myList = postSource.slice(0, state.pageIndex * perPage)
   return (
     <div>
@@ -84,8 +58,6 @@ const PostList = props => {
           value={state.searchTerm}
         />
       </div>
-      {/* <p>page: {state.pageIndex}</p>
-      <button onClick={seeMore}>Increase</button> */}
       {myList.map(post => (
         <div key={post.node.id}>
           <Link to={`/stories/${post.node.frontmatter.slug}`}>
