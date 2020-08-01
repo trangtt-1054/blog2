@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
 import Header from "../Header"
+import Footer from "../Footer"
 import { GlobalStateContext } from "../../context/GlobalContextProvider"
 
 const Layout = props => {
@@ -16,6 +17,7 @@ const Layout = props => {
     >
       <Header />
       {props.children}
+      <Footer />
     </div>
   )
 }
