@@ -9,6 +9,7 @@ exports.createPages = async ({ actions, graphql }) => {
               slug
               meta_title
               title
+              tags
             }
             id
           }
@@ -17,6 +18,7 @@ exports.createPages = async ({ actions, graphql }) => {
     }
   `)
 
+  const tags = []
   const posts = data.allMdx.edges
   posts.forEach((post, index) => {
     //const selected = post.node.frontmatter
@@ -27,6 +29,18 @@ exports.createPages = async ({ actions, graphql }) => {
         //...selected,
         id: post.node.id,
       },
+    })
+
+    post.node.frontmatter.tags.forEach(tag => {
+      if (!tags.some(tagItem => tagItem === tag)) {
+        tags.push(tag)
+      }
+
+      actions.createPage({
+        path: `/stories/tags/${tag.toLowerCase()}`,
+        component: require.resolve("./src/templates/tag.js"),
+        context: { tag },
+      })
     })
   })
 }
