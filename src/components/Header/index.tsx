@@ -1,22 +1,29 @@
-import React, { useContext } from "react"
+import React, { FC, useContext } from "react"
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd"
 import { Link } from "gatsby"
 import {
   GlobalDispatchContext,
   GlobalStateContext,
 } from "../../context/GlobalContextProvider"
+import ThemeToggler from "./themeToggler"
+import styled from "styled-components"
+import { TabInfo } from "../../types/TabInfo"
+import { DropResult } from "react-beautiful-dnd"
 
-const reorder = (list, startIndex, endIndex) => {
+const reorder = (list: TabInfo[], startIndex: number, endIndex: number) => {
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
   result.splice(endIndex, 0, removed)
-
   return result
 }
 
 const grid = 8
 
-const getTabItemStyle = (isDragging, draggableStyle, index) => ({
+const getTabItemStyle = (
+  isDragging: boolean,
+  draggableStyle: any,
+  index: number
+) => ({
   userSelect: "none",
   padding: grid * 2,
   margin: `0 ${grid}px 0 0`,
@@ -27,19 +34,19 @@ const getTabItemStyle = (isDragging, draggableStyle, index) => ({
   fontWeight: 600,
 })
 
-const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? "#fccbcb" : "#fccbcb",
+const getListStyle = (isDraggingOver: boolean) => ({
+  background: "beige",
   display: "flex",
   overflow: "auto",
 })
 
-const Header = props => {
-  const dispatch = useContext(GlobalDispatchContext)
-  //console.log(dispatch)
-  const state = useContext(GlobalStateContext)
-  //console.log(state)
+type Props = {}
 
-  const handleDragEnd = result => {
+const Header: FC<Props> = props => {
+  const dispatch = useContext(GlobalDispatchContext)
+  const state = useContext(GlobalStateContext)
+
+  const handleDragEnd = (result: DropResult) => {
     if (!result.destination) {
       return
     }
@@ -50,12 +57,10 @@ const Header = props => {
       result.destination.index
     )
     dispatch({ type: "DRAG_TAB", payload: newTabsOrder })
-    //onDragEnd(newTabsOrder)
-    //setTabs(newTabsOrder)
   }
 
   return (
-    <div>
+    <HeaderWrapper theme={state.theme}>
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="droppable" direction="horizontal">
           {(provided, snapshot) => (
@@ -95,17 +100,16 @@ const Header = props => {
           )}
         </Droppable>
       </DragDropContext>
-      {/* <div>
-        <button
-          type="button"
-          onClick={() => dispatch({ type: "TOGGLE_THEME" })}
-        >
-          Change Theme
-        </button>
-        {state.theme}
-      </div> */}
-    </div>
+      <ThemeToggler theme={state.theme} />
+    </HeaderWrapper>
   )
 }
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background: ${({ theme }) => (theme === "light" ? "#efbbcf" : "#241663")};
+  align-items: center;
+`
 
 export default Header

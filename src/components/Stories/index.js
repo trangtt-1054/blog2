@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "gatsby"
 import {
   GlobalDispatchContext,
@@ -12,21 +12,52 @@ const PostList = props => {
   const dispatch = useContext(GlobalDispatchContext)
   const state = useContext(GlobalStateContext)
   const { posts } = props
-  const hasMore = state.pageIndex * perPage < posts.length ? true : false
+
+  const getSearchedPosts = keyword => {
+    const allPosts = [...posts]
+    const regex = new RegExp(keyword, "gi")
+    const searchResults = allPosts.reduce((acc, post) => {
+      if (post.node.frontmatter.title.match(regex)) {
+        acc.push(post)
+      }
+      return acc
+    }, [])
+    return searchResults
+  }
+
+  const initialSource = state.searchTerm
+    ? getSearchedPosts(state.searchTerm)
+    : posts
+  const [postSource, setPostSource] = useState(initialSource)
+  const hasMore = state.pageIndex * perPage < postSource.length ? true : false
 
   const seeMore = () => {
     if (!hasMore) {
       return
     }
-    dispatch({ type: "NEXT_PAGE" })
+    dispatch({ type: "PAGE_CHANGE", payload: state.pageIndex + 1 })
   }
 
-  const myList = posts.slice(0, state.pageIndex * perPage)
+  const handleChange = e => {
+    dispatch({ type: "SEARCH", payload: e.target.value })
+    dispatch({ type: "PAGE_CHANGE", payload: 1 })
+    setPostSource(getSearchedPosts(e.target.value))
+  }
 
+  const myList = postSource.slice(0, state.pageIndex * perPage)
   return (
     <div>
-      {/* <p>page: {state.pageIndex}</p>
-      <button onClick={seeMore}>Increase</button> */}
+      {state.searchTerm && "terms exist"}
+      <div style={{ margin: 20 }}>
+        <input
+          name="search"
+          type=""
+          id="search"
+          placeholder="Search Posts"
+          onChange={handleChange}
+          value={state.searchTerm}
+        />
+      </div>
       {myList.map(post => (
         <div key={post.node.id}>
           <Link to={`/stories/${post.node.frontmatter.slug}`}>
