@@ -57,7 +57,7 @@ const Header = props => {
   }
 
   return (
-    <HeaderWrapper>
+    <HeaderWrapper theme={state.theme}>
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="droppable" direction="horizontal">
           {(provided, snapshot) => (
@@ -105,7 +105,7 @@ const Header = props => {
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  background: beige;
+  background: ${({ theme }) => (theme === "light" ? "#efbbcf" : "#241663")};
   align-items: center;
 `
 

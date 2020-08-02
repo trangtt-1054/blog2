@@ -1,12 +1,21 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
+import {
+  GlobalDispatchContext,
+  GlobalStateContext,
+} from "../../context/GlobalContextProvider"
 
 const ThemeToggler = () => {
+  const dispatch = useContext(GlobalDispatchContext)
+  const handleThemeChange = () => {
+    dispatch({ type: "TOGGLE_THEME" })
+  }
+
   return (
     <TogglerWrapper>
       Princess Mode
       <CheckBoxWrapper>
-        <CheckBox id="checkbox" type="checkbox" />
+        <CheckBox id="checkbox" type="checkbox" onChange={handleThemeChange} />
         <CheckBoxLabel htmlFor="checkbox" />
       </CheckBoxWrapper>
       Developer Mode
@@ -29,7 +38,7 @@ const CheckBoxLabel = styled.label`
   width: 42px;
   height: 26px;
   border-radius: 15px;
-  background: #efbbcf;
+  background: #241663;
   cursor: pointer;
   &::after {
     content: "";
@@ -50,7 +59,7 @@ const CheckBox = styled.input`
   width: 42px;
   height: 26px;
   &:checked + ${CheckBoxLabel} {
-    background: #318fb5;
+    background: #efbbcf;
     &::after {
       content: "";
       display: block;
