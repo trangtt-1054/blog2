@@ -5,26 +5,30 @@ import {
   GlobalStateContext,
 } from "../../context/GlobalContextProvider"
 
-const ThemeToggler = () => {
+const ThemeToggler = props => {
   const dispatch = useContext(GlobalDispatchContext)
   const handleThemeChange = () => {
     dispatch({ type: "TOGGLE_THEME" })
   }
+  const { theme } = props
 
   return (
     <TogglerWrapper>
-      Princess Mode
+      <ThemeName theme={theme}>Princess Mode</ThemeName>
       <CheckBoxWrapper>
         <CheckBox id="checkbox" type="checkbox" onChange={handleThemeChange} />
         <CheckBoxLabel htmlFor="checkbox" />
       </CheckBoxWrapper>
-      Developer Mode
+      <ThemeName theme={theme}>Developer Mode</ThemeName>
     </TogglerWrapper>
   )
 }
 
 const TogglerWrapper = styled.div`
   display: flex;
+`
+const ThemeName = styled.span`
+  color: ${({ theme }) => (theme === "light" ? "#241663" : "#efbbcf")};
 `
 
 const CheckBoxWrapper = styled.div`

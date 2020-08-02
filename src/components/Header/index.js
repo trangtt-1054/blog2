@@ -97,7 +97,7 @@ const Header = props => {
           )}
         </Droppable>
       </DragDropContext>
-      <ThemeToggler />
+      <ThemeToggler theme={state.theme} />
     </HeaderWrapper>
   )
 }
