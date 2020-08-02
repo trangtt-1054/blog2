@@ -16,7 +16,12 @@ const ThemeToggler = props => {
     <TogglerWrapper>
       <ThemeName theme={theme}>Princess Mode</ThemeName>
       <CheckBoxWrapper>
-        <CheckBox id="checkbox" type="checkbox" onChange={handleThemeChange} />
+        <CheckBox
+          id="checkbox"
+          type="checkbox"
+          onChange={handleThemeChange}
+          checked={theme === "dark" ? true : false}
+        />
         <CheckBoxLabel htmlFor="checkbox" />
       </CheckBoxWrapper>
       <ThemeName theme={theme}>Developer Mode</ThemeName>

@@ -12,7 +12,6 @@ const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
   result.splice(endIndex, 0, removed)
-
   return result
 }
 
@@ -37,9 +36,7 @@ const getListStyle = isDraggingOver => ({
 
 const Header = props => {
   const dispatch = useContext(GlobalDispatchContext)
-  //console.log(dispatch)
   const state = useContext(GlobalStateContext)
-  //console.log(state)
 
   const handleDragEnd = result => {
     if (!result.destination) {
@@ -52,8 +49,6 @@ const Header = props => {
       result.destination.index
     )
     dispatch({ type: "DRAG_TAB", payload: newTabsOrder })
-    //onDragEnd(newTabsOrder)
-    //setTabs(newTabsOrder)
   }
 
   return (

@@ -5,6 +5,7 @@ import { GlobalStateContext } from "../../context/GlobalContextProvider"
 
 const Layout = props => {
   const state = useContext(GlobalStateContext)
+  console.log(state)
   const { location } = props
   const activeTab = state.tabs.find(tab => tab.path === location)
   return (
@@ -17,7 +18,7 @@ const Layout = props => {
     >
       <Header />
       {props.children}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }
