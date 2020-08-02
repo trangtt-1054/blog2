@@ -1,10 +1,22 @@
-import React, { useReducer, createContext } from "react"
+import React, { FC, useReducer, createContext } from "react"
+import { State } from "../types/GlobalState"
 
 //tách state và dispatch thành 2 context because there will be less rerender https://kentcdodds.com/blog/how-to-use-react-context-effectively
-export const GlobalStateContext = createContext()
-export const GlobalDispatchContext = createContext()
 
-const initialState = {
+type Action = {
+  type: string
+  payload: any
+}
+
+type Dispatch = (action: Action) => void
+
+//export const GlobalStateContext = createContext<Partial<State>>({})
+export const GlobalStateContext = createContext<State | undefined>(undefined)
+export const GlobalDispatchContext = createContext<Dispatch | undefined>(
+  undefined
+)
+
+const initialState: State = {
   tabs: [
     { id: "tab-0", path: "/", content: "Home", color: "#8fcfd1" },
     { id: "tab-1", path: "/stories", content: "Stories", color: "#f6ab6c" },
@@ -16,7 +28,7 @@ const initialState = {
   searchTerm: "",
 }
 
-const reducer = (state, action) => {
+const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case "TOGGLE_THEME":
       return { ...state, theme: state.theme === "light" ? "dark" : "light" }
@@ -31,7 +43,11 @@ const reducer = (state, action) => {
   }
 }
 
-const GlobalContextProvider = ({ children }) => {
+type Props = {
+  children: any
+}
+
+const GlobalContextProvider: FC<Props> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   return (
     <GlobalStateContext.Provider value={state}>

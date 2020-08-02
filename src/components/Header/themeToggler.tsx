@@ -1,11 +1,12 @@
-import React, { useContext } from "react"
+import React, { FC, useContext } from "react"
 import styled from "styled-components"
-import {
-  GlobalDispatchContext,
-  GlobalStateContext,
-} from "../../context/GlobalContextProvider"
+import { GlobalDispatchContext } from "../../context/GlobalContextProvider"
 
-const ThemeToggler = props => {
+type Props = {
+  theme: string
+}
+
+const ThemeToggler: FC<Props> = props => {
   const dispatch = useContext(GlobalDispatchContext)
   const handleThemeChange = () => {
     dispatch({ type: "TOGGLE_THEME" })

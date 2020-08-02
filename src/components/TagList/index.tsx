@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 type Props = {
   tags: [string]
 }
+
 const TagList: FC<Props> = props => {
   const { tags } = props
   return (

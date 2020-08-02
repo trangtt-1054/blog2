@@ -1,11 +1,12 @@
-import React, { useContext } from "react"
+import React, { FC, useContext } from "react"
 import Header from "../Header"
-import Footer from "../Footer"
 import { GlobalStateContext } from "../../context/GlobalContextProvider"
+type Props = {
+  location: string
+}
 
-const Layout = props => {
+const Layout: FC<Props> = props => {
   const state = useContext(GlobalStateContext)
-  console.log(state)
   const { location } = props
   const activeTab = state.tabs.find(tab => tab.path === location)
   return (
