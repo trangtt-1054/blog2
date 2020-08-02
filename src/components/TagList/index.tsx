@@ -1,9 +1,10 @@
-import React from "react"
+import React, { FC } from "react"
 import { Link } from "gatsby"
-// import { GlobalDispatchContext } from "../../context/GlobalContextProvider"
 
-const TagList = props => {
-  //const dispatch = useContext(GlobalDispatchContext)
+type Props = {
+  tags: [string]
+}
+const TagList: FC<Props> = props => {
   const { tags } = props
   return (
     <div>

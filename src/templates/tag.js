@@ -9,7 +9,6 @@ const TagPageTemplate = props => {
       allMdx: { edges },
     },
   } = props
-  console.log(edges)
   return (
     <Layout location="/stories">
       <PostList posts={edges} />
