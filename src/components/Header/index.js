@@ -5,6 +5,8 @@ import {
   GlobalDispatchContext,
   GlobalStateContext,
 } from "../../context/GlobalContextProvider"
+import ThemeToggler from "./themeToggler"
+import styled from "styled-components"
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
@@ -95,15 +97,7 @@ const Header = props => {
           )}
         </Droppable>
       </DragDropContext>
-      {/* <div>
-        <button
-          type="button"
-          onClick={() => dispatch({ type: "TOGGLE_THEME" })}
-        >
-          Change Theme
-        </button>
-        {state.theme}
-      </div> */}
+      <ThemeToggler />
     </div>
   )
 }
