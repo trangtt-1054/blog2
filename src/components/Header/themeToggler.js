@@ -3,17 +3,24 @@ import styled from "styled-components"
 
 const ThemeToggler = () => {
   return (
-    <div>
+    <TogglerWrapper>
+      Princess Mode
       <CheckBoxWrapper>
         <CheckBox id="checkbox" type="checkbox" />
         <CheckBoxLabel htmlFor="checkbox" />
       </CheckBoxWrapper>
-    </div>
+      Developer Mode
+    </TogglerWrapper>
   )
 }
 
+const TogglerWrapper = styled.div`
+  display: flex;
+`
+
 const CheckBoxWrapper = styled.div`
   position: relative;
+  margin: 0 10px;
 `
 const CheckBoxLabel = styled.label`
   position: absolute;
@@ -22,16 +29,16 @@ const CheckBoxLabel = styled.label`
   width: 42px;
   height: 26px;
   border-radius: 15px;
-  background: #bebebe;
+  background: #efbbcf;
   cursor: pointer;
   &::after {
     content: "";
     display: block;
     border-radius: 50%;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     margin: 3px;
-    background: #ffffff;
+    background: beige;
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
     transition: 0.2s;
   }
@@ -43,14 +50,14 @@ const CheckBox = styled.input`
   width: 42px;
   height: 26px;
   &:checked + ${CheckBoxLabel} {
-    background: #4fbe79;
+    background: #318fb5;
     &::after {
       content: "";
       display: block;
       border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      margin-left: 21px;
+      width: 20px;
+      height: 20px;
+      margin-left: 19.3px;
       transition: 0.2s;
     }
   }

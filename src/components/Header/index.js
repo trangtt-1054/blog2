@@ -30,7 +30,7 @@ const getTabItemStyle = (isDragging, draggableStyle, index) => ({
 })
 
 const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? "#fccbcb" : "#fccbcb",
+  background: "beige",
   display: "flex",
   overflow: "auto",
 })
@@ -57,7 +57,7 @@ const Header = props => {
   }
 
   return (
-    <div>
+    <HeaderWrapper>
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="droppable" direction="horizontal">
           {(provided, snapshot) => (
@@ -98,8 +98,15 @@ const Header = props => {
         </Droppable>
       </DragDropContext>
       <ThemeToggler />
-    </div>
+    </HeaderWrapper>
   )
 }
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background: beige;
+  align-items: center;
+`
 
 export default Header
