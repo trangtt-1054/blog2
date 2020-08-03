@@ -5,7 +5,7 @@ import Img from "gatsby-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import TagList from "../components/TagList"
 
-const PostTemplate = props => {
+const PostTemplate = (props: any) => {
   const { data } = props
   return (
     <Layout location="/stories">

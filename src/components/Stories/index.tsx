@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState, FC } from "react"
 import { Link } from "gatsby"
 import {
   GlobalDispatchContext,
@@ -8,12 +8,16 @@ import TagList from "../TagList"
 
 const perPage = 3
 
-const PostList = props => {
+type Props = {
+  posts: any
+}
+
+const PostList: FC<Props> = props => {
   const dispatch = useContext(GlobalDispatchContext)
   const state = useContext(GlobalStateContext)
   const { posts } = props
 
-  const getSearchedPosts = keyword => {
+  const getSearchedPosts = (keyword: string) => {
     const allPosts = [...posts]
     const regex = new RegExp(keyword, "gi")
     const searchResults = allPosts.reduce((acc, post) => {
@@ -38,7 +42,7 @@ const PostList = props => {
     dispatch({ type: "PAGE_CHANGE", payload: state.pageIndex + 1 })
   }
 
-  const handleChange = e => {
+  const handleChange = (e: any) => {
     dispatch({ type: "SEARCH", payload: e.target.value })
     dispatch({ type: "PAGE_CHANGE", payload: 1 })
     setPostSource(getSearchedPosts(e.target.value))
@@ -58,7 +62,7 @@ const PostList = props => {
           value={state.searchTerm}
         />
       </div>
-      {myList.map(post => (
+      {myList.map((post: any) => (
         <div key={post.node.id}>
           <Link to={`/stories/${post.node.frontmatter.slug}`}>
             <h2>{post.node.frontmatter.title}</h2>

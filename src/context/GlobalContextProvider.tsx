@@ -5,7 +5,7 @@ import { State } from "../types/GlobalState"
 
 type Action = {
   type: string
-  payload: any
+  payload?: any
 }
 
 type Dispatch = (action: Action) => void

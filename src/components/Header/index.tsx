@@ -110,6 +110,9 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   background: ${({ theme }) => (theme === "light" ? "#efbbcf" : "#241663")};
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 `
 
 export default Header

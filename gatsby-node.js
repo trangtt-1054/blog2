@@ -24,7 +24,7 @@ exports.createPages = async ({ actions, graphql }) => {
     //const selected = post.node.frontmatter
     actions.createPage({
       path: `/stories/${post.node.frontmatter.slug}`,
-      component: require.resolve("./src/templates/post.js"),
+      component: require.resolve("./src/templates/post.tsx"),
       context: {
         //...selected,
         id: post.node.id,
@@ -38,7 +38,7 @@ exports.createPages = async ({ actions, graphql }) => {
 
       actions.createPage({
         path: `/stories/tags/${tag.toLowerCase()}`,
-        component: require.resolve("./src/templates/tag.js"),
+        component: require.resolve("./src/templates/tag.tsx"),
         context: { tag },
       })
     })
