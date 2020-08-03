@@ -1,7 +1,8 @@
 import React from "react"
 import Layout from "../components/Layout"
 import { Link } from "gatsby"
-const Index = props => {
+
+const Index = (props: any) => {
   const { uri } = props
   return (
     <Layout location={uri}>

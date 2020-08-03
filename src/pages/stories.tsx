@@ -1,36 +1,34 @@
 import React from "react"
 import Layout from "../components/Layout"
-import { graphql } from "gatsby"
 import PostList from "../components/Stories"
+import { graphql } from "gatsby"
 
-const TagPageTemplate = props => {
+const Stories = (props: any) => {
   const {
     data: {
       allMdx: { edges },
     },
   } = props
+  const { uri } = props
   return (
-    <Layout location="/stories">
+    <Layout location={uri}>
       <PostList posts={edges} />
     </Layout>
   )
 }
 
-export default TagPageTemplate
+export default Stories
 
-export const taggedPostsQuery = graphql`
-  query($tag: String!) {
-    allMdx(
-      filter: { frontmatter: { tags: { eq: $tag } } }
-      sort: { fields: frontmatter___date, order: DESC }
-    ) {
+export const query = graphql`
+  query {
+    allMdx(sort: { fields: frontmatter___date, order: DESC }) {
       edges {
         node {
           frontmatter {
+            date(formatString: "MMMM DD, YY")
             title
             slug
             tags
-            date(formatString: "MMMM DD, YY")
             meta_title
           }
           id
