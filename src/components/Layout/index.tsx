@@ -34,4 +34,5 @@ const Container = styled.div`
   background: ${props => props.color};
   height: 750px;
   overflow: auto;
+  position: relative;
 `
