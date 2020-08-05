@@ -25,8 +25,7 @@ const getTabItemStyle = (
   index: number
 ) => ({
   userSelect: "none",
-  padding: grid * 2,
-  margin: `0 ${grid}px 0 0`,
+
   //background: isDragging ? "#96bb7c" : "#eebb4d",
   //background: colors[index % colors.length],
   ...draggableStyle,
@@ -74,18 +73,11 @@ const Header: FC<Props> = props => {
                 {state.tabs.map((tab, index) => (
                   <Draggable key={tab.id} draggableId={tab.id} index={index}>
                     {(provided, snapshot) => (
-                      <div
+                      <TabDiv
+                        color={tab.color}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        style={{
-                          ...getTabItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style,
-                            index
-                          ),
-                          background: tab.color,
-                        }}
                       >
                         <Link
                           style={{ textDecoration: "none", width: "100%" }}
@@ -93,7 +85,7 @@ const Header: FC<Props> = props => {
                         >
                           {tab.content}
                         </Link>
-                      </div>
+                      </TabDiv>
                     )}
                   </Draggable>
                 ))}
@@ -116,6 +108,16 @@ const HeaderWrapper = styled.div`
   position: sticky;
   top: 0;
   z-index: 100;
+`
+
+const TabDiv = styled.div`
+  border-bottom: ${props => `40px solid ${props.color}`};
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  height: 0;
+  padding: 0 10px;
+  text-transform: uppercase;
+  color: grey;
 `
 
 export default Header

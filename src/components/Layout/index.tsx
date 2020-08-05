@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react"
 import Header from "../Header"
 import { GlobalStateContext } from "../../context/GlobalContextProvider"
-import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd"
+//import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd"
 import styled from "styled-components"
 
 type Props = {
@@ -17,7 +17,7 @@ const Layout: FC<Props> = props => {
   const activeTab = state.tabs.find(tab => tab.path === location)
   return (
     <PageLayout>
-      <DragDropContext onDragEnd={handleDragEnd}>
+      {/* <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>
@@ -27,13 +27,13 @@ const Layout: FC<Props> = props => {
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                  >
-                    <Container color={activeTab.color}>
-                      <Header />
-                      {props.children}
-                      {/* <Footer /> */}
-                    </Container>
-                  </div>
+                  > */}
+      <Container color={activeTab.color}>
+        <Header />
+        {props.children}
+        {/* <Footer /> */}
+      </Container>
+      {/* </div>
                 )}
               </Draggable>
 
@@ -41,7 +41,7 @@ const Layout: FC<Props> = props => {
             </div>
           )}
         </Droppable>
-      </DragDropContext>
+      </DragDropContext> */}
     </PageLayout>
   )
 }
