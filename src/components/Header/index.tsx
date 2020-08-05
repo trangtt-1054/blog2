@@ -61,45 +61,48 @@ const Header: FC<Props> = props => {
 
   return (
     <HeaderWrapper theme={state.theme}>
-      <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="droppable" direction="horizontal">
-          {(provided, snapshot) => (
-            <div
-              ref={provided.innerRef}
-              style={getListStyle(snapshot.isDraggingOver)}
-              {...provided.droppableProps}
-            >
-              {state.tabs.map((tab, index) => (
-                <Draggable key={tab.id} draggableId={tab.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      style={{
-                        ...getTabItemStyle(
-                          snapshot.isDragging,
-                          provided.draggableProps.style,
-                          index
-                        ),
-                        background: tab.color,
-                      }}
-                    >
-                      <Link
-                        style={{ textDecoration: "none", width: "100%" }}
-                        to={tab.path}
+      <div style={{ display: "flex" }}>
+        <div style={{ width: 30, height: 30, background: "red" }}></div>
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <Droppable droppableId="droppable" direction="horizontal">
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+                {...provided.droppableProps}
+              >
+                {state.tabs.map((tab, index) => (
+                  <Draggable key={tab.id} draggableId={tab.id} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        style={{
+                          ...getTabItemStyle(
+                            snapshot.isDragging,
+                            provided.draggableProps.style,
+                            index
+                          ),
+                          background: tab.color,
+                        }}
                       >
-                        {tab.content}
-                      </Link>
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+                        <Link
+                          style={{ textDecoration: "none", width: "100%" }}
+                          to={tab.path}
+                        >
+                          {tab.content}
+                        </Link>
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </div>
       <ThemeToggler theme={state.theme} />
     </HeaderWrapper>
   )
