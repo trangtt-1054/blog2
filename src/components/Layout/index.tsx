@@ -1,6 +1,7 @@
 import React, { FC, useContext } from "react"
 import Header from "../Header"
 import { GlobalStateContext } from "../../context/GlobalContextProvider"
+import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd"
 import styled from "styled-components"
 
 type Props = {
@@ -8,16 +9,39 @@ type Props = {
 }
 
 const Layout: FC<Props> = props => {
+  const handleDragEnd = (result: any) => {
+    console.log(result)
+  }
   const state = useContext(GlobalStateContext)
   const { location } = props
   const activeTab = state.tabs.find(tab => tab.path === location)
   return (
     <PageLayout>
-      <Container color={activeTab.color}>
-        <Header />
-        {props.children}
-        {/* <Footer /> */}
-      </Container>
+      <DragDropContext onDragEnd={handleDragEnd}>
+        <Droppable droppableId="droppable">
+          {(provided, snapshot) => (
+            <div ref={provided.innerRef} {...provided.droppableProps}>
+              <Draggable key="key" draggableId="id" index={0}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <Container color={activeTab.color}>
+                      <Header />
+                      {props.children}
+                      {/* <Footer /> */}
+                    </Container>
+                  </div>
+                )}
+              </Draggable>
+
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
     </PageLayout>
   )
 }
@@ -26,7 +50,7 @@ export default Layout
 
 const PageLayout = styled.div`
   height: 100vh;
-  background: beige;
+
   padding: 50px 200px;
 `
 
