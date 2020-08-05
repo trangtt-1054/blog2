@@ -80,7 +80,11 @@ const Header: FC<Props> = props => {
                         {...provided.dragHandleProps}
                       >
                         <Link
-                          style={{ textDecoration: "none", width: "100%" }}
+                          style={{
+                            textDecoration: "none",
+                            width: "100%",
+                            color: "white",
+                          }}
                           to={tab.path}
                         >
                           {tab.content}
