@@ -121,7 +121,16 @@ const TabDiv = styled.div`
   height: 0;
   padding: 0 10px;
   text-transform: uppercase;
-  color: grey;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    border-left: 2px solid red;
+    border-right: 2px solid red;
+    width: 0;
+    height: 0;
+    top: 20px;
+  }
 `
 
 export default Header

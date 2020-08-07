@@ -30,8 +30,10 @@ const Layout: FC<Props> = props => {
                   > */}
       <Container color={activeTab.color}>
         <Header />
-        {props.children}
-        {/* <Footer /> */}
+        <Page>
+          {props.children}
+          {/* <Footer /> */}
+        </Page>
       </Container>
       {/* </div>
                 )}
@@ -55,8 +57,16 @@ const PageLayout = styled.div`
 `
 
 const Container = styled.div`
-  background: ${props => props.color};
+  /* background: ${props => props.color}; */
+  
   height: 750px;
   overflow: auto;
   position: relative;
+`
+
+const Page = styled.div`
+  background: #ffcac2;
+  border: 3px solid #342b38;
+  height: 700px;
+  border-radius: 15px;
 `
