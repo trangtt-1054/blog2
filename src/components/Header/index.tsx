@@ -61,7 +61,7 @@ const Header: FC<Props> = props => {
   return (
     <HeaderWrapper theme={state.theme}>
       <div style={{ display: "flex" }}>
-        <div style={{ width: 30, height: 30, background: "red" }}></div>
+        <div style={{ width: 30, background: "red" }}></div>
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="droppable" direction="horizontal">
             {(provided, snapshot) => (
@@ -83,7 +83,7 @@ const Header: FC<Props> = props => {
                           style={{
                             textDecoration: "none",
                             width: "100%",
-                            color: "white",
+                            color: "#676767",
                           }}
                           to={tab.path}
                         >
@@ -115,22 +115,11 @@ const HeaderWrapper = styled.div`
 `
 
 const TabDiv = styled.div`
-  border-bottom: ${props => `40px solid ${props.color}`};
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  height: 0;
-  padding: 0 10px;
-  text-transform: uppercase;
-  position: relative;
-  &::before {
-    content: "";
-    position: absolute;
-    border-left: 2px solid red;
-    border-right: 2px solid red;
-    width: 0;
-    height: 0;
-    top: 20px;
-  }
+  width: 149px;
+  height: 53px;
+  background-image: url("tab1.svg");
+  text-align: center;
+  background-repeat: no-repeat;
 `
 
 export default Header

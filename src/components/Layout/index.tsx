@@ -1,7 +1,6 @@
 import React, { FC, useContext } from "react"
 import Header from "../Header"
 import { GlobalStateContext } from "../../context/GlobalContextProvider"
-//import { Draggable, DragDropContext, Droppable } from "react-beautiful-dnd"
 import styled from "styled-components"
 
 type Props = {
@@ -9,41 +8,17 @@ type Props = {
 }
 
 const Layout: FC<Props> = props => {
-  const handleDragEnd = (result: any) => {
-    console.log(result)
-  }
   const state = useContext(GlobalStateContext)
   const { location } = props
   const activeTab = state.tabs.find(tab => tab.path === location)
   return (
     <PageLayout>
-      {/* <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              <Draggable key="key" draggableId="id" index={0}>
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  > */}
       <Container color={activeTab.color}>
         <Header />
         <Page>
-          {props.children}
-          {/* <Footer /> */}
+          <PageContent>{props.children}</PageContent>
         </Page>
       </Container>
-      {/* </div>
-                )}
-              </Draggable>
-
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext> */}
     </PageLayout>
   )
 }
@@ -52,21 +27,19 @@ export default Layout
 
 const PageLayout = styled.div`
   height: 100vh;
-
   padding: 50px 200px;
 `
 
 const Container = styled.div`
-  /* background: ${props => props.color}; */
-  
-  height: 750px;
-  overflow: auto;
+  max-height: 750px;
   position: relative;
 `
 
 const Page = styled.div`
-  background: #ffcac2;
-  border: 3px solid #342b38;
+  background: #ffebe5;
+  border: 2px solid #676767;
   height: 700px;
   border-radius: 15px;
+  overflow: scroll;
 `
+const PageContent = styled.div``
