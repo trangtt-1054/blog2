@@ -35,6 +35,7 @@ const TogglerWrapper = styled.div`
 `
 const ThemeName = styled.span`
   color: ${({ theme }) => (theme === "light" ? "#241663" : "#efbbcf")};
+  font-size: 10px;
 `
 
 const CheckBoxWrapper = styled.div`

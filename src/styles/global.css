@@ -1,4 +1,17 @@
 html {
-  background-color: #f0ece3;
-  overflow: auto;
+  /* ÷background-color: beige; */
+  /* overflow: auto; */
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c8b2d1;
+  border-radius: 10px;
 }

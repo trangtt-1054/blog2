@@ -3,4 +3,5 @@ export type TabInfo = {
   path: string
   content: string
   color: string
+  active: boolean
 }

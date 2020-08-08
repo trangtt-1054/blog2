@@ -9,6 +9,8 @@ import ThemeToggler from "./themeToggler"
 import styled from "styled-components"
 import { TabInfo } from "../../types/TabInfo"
 import { DropResult } from "react-beautiful-dnd"
+import inactiveTab from "../../assets/elements/inactive-tab.svg"
+import activeTab from "../../assets/elements/active-tab.svg"
 
 const reorder = (list: TabInfo[], startIndex: number, endIndex: number) => {
   const result = Array.from(list)
@@ -25,8 +27,7 @@ const getTabItemStyle = (
   index: number
 ) => ({
   userSelect: "none",
-  padding: grid * 2,
-  margin: `0 ${grid}px 0 0`,
+
   //background: isDragging ? "#96bb7c" : "#eebb4d",
   //background: colors[index % colors.length],
   ...draggableStyle,
@@ -35,9 +36,9 @@ const getTabItemStyle = (
 })
 
 const getListStyle = (isDraggingOver: boolean) => ({
-  background: "beige",
+  //background: "beige",
   display: "flex",
-  overflow: "auto",
+  // overflow: "auto",
 })
 
 type Props = {}
@@ -61,45 +62,40 @@ const Header: FC<Props> = props => {
 
   return (
     <HeaderWrapper theme={state.theme}>
-      <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="droppable" direction="horizontal">
-          {(provided, snapshot) => (
-            <div
-              ref={provided.innerRef}
-              style={getListStyle(snapshot.isDraggingOver)}
-              {...provided.droppableProps}
-            >
-              {state.tabs.map((tab, index) => (
-                <Draggable key={tab.id} draggableId={tab.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      style={{
-                        ...getTabItemStyle(
-                          snapshot.isDragging,
-                          provided.draggableProps.style,
-                          index
-                        ),
-                        background: tab.color,
-                      }}
-                    >
-                      <Link
-                        style={{ textDecoration: "none", width: "100%" }}
-                        to={tab.path}
+      <TabsWrapper style={{ display: "flex" }}>
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <Droppable droppableId="droppable" direction="horizontal">
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+                {...provided.droppableProps}
+              >
+                {state.tabs.map((tab, index) => (
+                  <Draggable key={tab.id} draggableId={tab.id} index={index}>
+                    {(provided, snapshot) => (
+                      <TabDiv
+                        color={tab.color}
+                        active={tab.active}
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
                       >
-                        {tab.content}
-                      </Link>
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+                        <img
+                          src={tab.active ? activeTab : inactiveTab}
+                          alt="Tab background"
+                        />
+                        <MyLink to={tab.path}>{tab.content}</MyLink>
+                      </TabDiv>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </TabsWrapper>
       <ThemeToggler theme={state.theme} />
     </HeaderWrapper>
   )
@@ -108,11 +104,29 @@ const Header: FC<Props> = props => {
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  background: ${({ theme }) => (theme === "light" ? "#efbbcf" : "#241663")};
+  background: ${({ theme }) => (theme === "light" ? "white" : "#241663")};
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+`
+
+const TabsWrapper = styled.div`
+  display: flex;
+  padding-left: 50px;
+`
+
+const TabDiv = styled.div`
+  width: 155px;
+  height: 50px;
+  text-align: center;
+  position: relative;
+  overflow: ${({ active }) => (active ? "visible" : "hidden")};
+`
+const MyLink = styled(Link)`
+  text-decoration: none;
+  color: #676767;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `
 
 export default Header

@@ -13,10 +13,11 @@ const Layout: FC<Props> = props => {
   const activeTab = state.tabs.find(tab => tab.path === location)
   return (
     <PageLayout>
-      <Container color={activeTab.color}>
+      <Container>
         <Header />
-        {props.children}
-        {/* <Footer /> */}
+        <Page active={activeTab.active}>
+          <PageContent>{props.children}</PageContent>
+        </Page>
       </Container>
     </PageLayout>
   )
@@ -25,14 +26,26 @@ const Layout: FC<Props> = props => {
 export default Layout
 
 const PageLayout = styled.div`
-  height: 100vh;
-  background: beige;
-  padding: 50px 200px;
+  /* padding: 50px 200px; */
 `
 
 const Container = styled.div`
-  background: ${props => props.color};
-  height: 750px;
-  overflow: auto;
+  /* max-height: 75vh; */
+  max-width: 80%;
+  margin: 6vh auto;
   position: relative;
+`
+
+const Page = styled.div`
+  background: ${({ active }) => (active ? "#FBF5E6" : "#F5D7D4")};
+  border: 4px solid #33302b;
+  height: 82vh;
+  border-radius: 17px;
+  overflow: hidden;
+  padding: 30px 30px;
+`
+const PageContent = styled.div`
+  overflow-y: scroll;
+  background: white;
+  height: 100%;
 `
