@@ -119,10 +119,12 @@ const TabDiv = styled.div`
   text-align: center;
   position: relative;
   overflow: ${({ active }) => (active ? "visible" : "hidden")};
+  font-size: 22px;
+  font-weight: 800;
 `
 const MyLink = styled(Link)`
   text-decoration: none;
-  color: #676767;
+  color: #33302b;
   position: absolute;
   top: 50%;
   left: 50%;

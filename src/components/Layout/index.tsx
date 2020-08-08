@@ -37,7 +37,7 @@ const Container = styled.div`
 `
 
 const Page = styled.div`
-  background: ${({ active }) => (active ? "#FBF5E6" : "#F5D7D4")};
+  background: #fbf5e6;
   border: 4px solid #33302b;
   height: 82vh;
   border-radius: 17px;
