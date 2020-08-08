@@ -9,6 +9,7 @@ import ThemeToggler from "./themeToggler"
 import styled from "styled-components"
 import { TabInfo } from "../../types/TabInfo"
 import { DropResult } from "react-beautiful-dnd"
+import svg from "../../assets/elements/tab1.svg"
 
 const reorder = (list: TabInfo[], startIndex: number, endIndex: number) => {
   const result = Array.from(list)
@@ -36,7 +37,7 @@ const getTabItemStyle = (
 const getListStyle = (isDraggingOver: boolean) => ({
   background: "beige",
   display: "flex",
-  overflow: "auto",
+  // overflow: "auto",
 })
 
 type Props = {}
@@ -79,16 +80,8 @@ const Header: FC<Props> = props => {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <Link
-                          style={{
-                            textDecoration: "none",
-                            width: "100%",
-                            color: "#676767",
-                          }}
-                          to={tab.path}
-                        >
-                          {tab.content}
-                        </Link>
+                        <img src={svg} alt="Tab background" />
+                        <MyLink to={tab.path}>{tab.content}</MyLink>
                       </TabDiv>
                     )}
                   </Draggable>
@@ -115,11 +108,18 @@ const HeaderWrapper = styled.div`
 `
 
 const TabDiv = styled.div`
-  width: 149px;
-  height: 53px;
-  background-image: url("tab1.svg");
+  width: 155px;
+  height: 50px;
   text-align: center;
-  background-repeat: no-repeat;
+  position: relative;
+`
+const MyLink = styled(Link)`
+  text-decoration: none;
+  color: #676767;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `
 
 export default Header

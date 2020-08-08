@@ -1,6 +1,6 @@
 html {
   background-color: beige;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 ::-webkit-scrollbar {
