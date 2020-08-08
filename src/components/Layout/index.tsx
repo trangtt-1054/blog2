@@ -37,10 +37,10 @@ const Container = styled.div`
 `
 
 const Page = styled.div`
-  background: #ffebe5;
-  border: 2px solid #676767;
+  background: #f5d7d4;
+  border: 4px solid #33302b;
   height: 82vh;
-  border-radius: 15px;
+  border-radius: 17px;
   overflow: hidden;
   padding: 30px 30px;
 `

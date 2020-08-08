@@ -9,7 +9,7 @@ import ThemeToggler from "./themeToggler"
 import styled from "styled-components"
 import { TabInfo } from "../../types/TabInfo"
 import { DropResult } from "react-beautiful-dnd"
-import svg from "../../assets/elements/tab1.svg"
+import svg from "../../assets/elements/inactive-tab.svg"
 
 const reorder = (list: TabInfo[], startIndex: number, endIndex: number) => {
   const result = Array.from(list)
@@ -35,7 +35,7 @@ const getTabItemStyle = (
 })
 
 const getListStyle = (isDraggingOver: boolean) => ({
-  background: "beige",
+  //background: "beige",
   display: "flex",
   // overflow: "auto",
 })
@@ -61,8 +61,7 @@ const Header: FC<Props> = props => {
 
   return (
     <HeaderWrapper theme={state.theme}>
-      <div style={{ display: "flex" }}>
-        <div style={{ width: 30, background: "red" }}></div>
+      <TabsWrapper style={{ display: "flex" }}>
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="droppable" direction="horizontal">
             {(provided, snapshot) => (
@@ -91,7 +90,7 @@ const Header: FC<Props> = props => {
             )}
           </Droppable>
         </DragDropContext>
-      </div>
+      </TabsWrapper>
       <ThemeToggler theme={state.theme} />
     </HeaderWrapper>
   )
@@ -100,11 +99,13 @@ const Header: FC<Props> = props => {
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  background: ${({ theme }) => (theme === "light" ? "#efbbcf" : "#241663")};
+  background: ${({ theme }) => (theme === "light" ? "white" : "#241663")};
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+`
+
+const TabsWrapper = styled.div`
+  display: flex;
+  padding-left: 50px;
 `
 
 const TabDiv = styled.div`
@@ -112,6 +113,7 @@ const TabDiv = styled.div`
   height: 50px;
   text-align: center;
   position: relative;
+  overflow: hidden;
 `
 const MyLink = styled(Link)`
   text-decoration: none;
