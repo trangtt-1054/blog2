@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="154px" height="55px" viewBox="0 0 154 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>inactive-tab</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-19.000000, -12.000000)" fill-rule="nonzero">
+            <g id="inactive-tab" transform="translate(19.000000, 12.000000)">
+                <path d="M31.4237734,2 L122.602249,2 C130.117528,2 136.741038,6.75515292 138.891449,13.6943478 L151.691801,55 L2.42597728,55 L15.1250355,13.7252362 C17.264794,6.77054504 23.89612,2 31.4237734,2 Z" id="Rectangle-Copy-6" fill="#FBF5E6"></path>
+                <path d="M4.19239643,51 L149.91234,51 L137.254462,14.1384482 C135.207568,8.06544591 129.479757,3.97155312 123.029846,3.97155312 L30.9701555,3.97155312 C24.5202439,3.97155312 18.7924328,8.06544591 16.7455392,14.1384482 L4.19239643,51 Z M0.103385,51 L12.9523082,12.8780671 C15.5450401,5.18559754 22.8002674,0 30.9701555,0 L123.029846,0 C131.199734,0 138.454961,5.18559754 141.047693,12.8780671 L153.896616,51 L154,51 L154,55 L0,55 L0,51 L0.103385,51 Z" id="Path-2" fill="#33302B"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -11,6 +11,8 @@ import { TabInfo } from "../../types/TabInfo"
 import { DropResult } from "react-beautiful-dnd"
 import inactiveTab from "../../assets/elements/inactive-tab.svg"
 import activeTab from "../../assets/elements/active-tab.svg"
+import activeTabDragging from "../../assets/elements/active-tab-dragging.svg"
+import inactiveDragging from "../../assets/elements/inactive-tab-dragging.svg"
 
 const reorder = (list: TabInfo[], startIndex: number, endIndex: number) => {
   const result = Array.from(list)
@@ -57,8 +59,15 @@ const Header: FC<Props> = props => {
     dispatch({ type: "DRAG_TAB", payload: newTabsOrder })
   }
 
+  const getTabImg = (active: boolean, isDragging: boolean) => {
+    if (active) {
+      return isDragging ? activeTabDragging : activeTab
+    } else {
+      return isDragging ? inactiveDragging : inactiveTab
+    }
+  }
+
   const getTabIconColor = (active: boolean, path: string) => {
-    console.log(active, path)
     if (active) {
       if (path === "/") return "#FF9B0C"
       if (path === "/portfolio") return "#E544FF"
@@ -88,12 +97,14 @@ const Header: FC<Props> = props => {
                     {(provided, snapshot) => (
                       <TabDiv
                         active={tab.active}
+                        isDragging={snapshot.isDragging}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
                         <img
-                          src={tab.active ? activeTab : inactiveTab}
+                          //src={tab.active ? activeTab : inactiveTab}
+                          src={getTabImg(tab.active, snapshot.isDragging)}
                           alt="Tab background"
                         />
                         <TabTitle>
@@ -134,7 +145,8 @@ const TabDiv = styled.div`
   height: 50px;
   text-align: center;
   position: relative;
-  overflow: ${({ active }) => (active ? "visible" : "hidden")};
+  overflow: ${({ active, isDragging }) =>
+    active || isDragging ? "visible" : "hidden"};
   font-size: 22px;
   font-weight: 800;
 `
