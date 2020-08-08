@@ -18,25 +18,25 @@ export const GlobalDispatchContext = createContext<Dispatch | undefined>(
 
 const initialState: State = {
   tabs: [
-    { id: "tab-0", path: "/", content: "Home", color: "#8fcfd1", active: true },
+    { id: "tab-0", path: "/", content: "home", color: "#8fcfd1", active: true },
     {
       id: "tab-1",
       path: "/stories",
-      content: "Stories",
+      content: "stories",
       color: "#f6ab6c",
       active: false,
     },
     {
       id: "tab-2",
       path: "/portfolio",
-      content: "Portfolio",
+      content: "work",
       color: "#96bb7c",
       active: false,
     },
     {
       id: "tab-3",
       path: "/about",
-      content: "Bout",
+      content: "bout",
       color: "#eebb4d",
       active: false,
     },

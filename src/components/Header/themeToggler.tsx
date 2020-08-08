@@ -15,7 +15,7 @@ const ThemeToggler: FC<Props> = props => {
 
   return (
     <TogglerWrapper>
-      <ThemeName theme={theme}>Princess Mode</ThemeName>
+      <ThemeName theme={theme}>princess mode</ThemeName>
       <CheckBoxWrapper>
         <CheckBox
           id="checkbox"
@@ -25,41 +25,48 @@ const ThemeToggler: FC<Props> = props => {
         />
         <CheckBoxLabel htmlFor="checkbox" />
       </CheckBoxWrapper>
-      <ThemeName theme={theme}>Developer Mode</ThemeName>
+      <ThemeName theme={theme}>developer mode</ThemeName>
     </TogglerWrapper>
   )
 }
 
 const TogglerWrapper = styled.div`
   display: flex;
+  align-items: center;
 `
 const ThemeName = styled.span`
   color: ${({ theme }) => (theme === "light" ? "#241663" : "#efbbcf")};
-  font-size: 10px;
+  font-size: 20px;
+  color: #33302b;
+  font-weight: 800;
+  padding-bottom: 17px;
 `
 
 const CheckBoxWrapper = styled.div`
   position: relative;
-  margin: 0 10px;
+  margin: 0 12px;
 `
 const CheckBoxLabel = styled.label`
   position: absolute;
   top: 0;
   left: 0;
-  width: 42px;
-  height: 26px;
+  width: 50px;
+  height: 20px;
   border-radius: 15px;
-  background: #241663;
+  background: #fbf5e6;
+  border: 4px solid #33302b;
   cursor: pointer;
   &::after {
     content: "";
     display: block;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    margin: 3px;
-    background: beige;
-    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
+    width: 28px;
+    height: 28px;
+    margin: -8px;
+    margin-left: -5px;
+    background: #f5d7d4;
+    border: 4px solid #33302b;
+    /* box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2); */
     transition: 0.2s;
   }
 `
@@ -75,8 +82,8 @@ const CheckBox = styled.input`
       content: "";
       display: block;
       border-radius: 50%;
-      width: 20px;
-      height: 20px;
+      width: 28px;
+      height: 28px;
       margin-left: 19.3px;
       transition: 0.2s;
     }

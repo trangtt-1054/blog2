@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="156px" height="54px" viewBox="0 0 156 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>inactive-tab</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-10.000000, 0.000000)">
+            <g id="inactive-tab" transform="translate(10.000000, 0.000000)">
+                <path d="M32.4237734,2 L123.602249,2 C131.117528,2 137.741038,6.57571318 139.891449,13.2530516 L152.691801,53 L3.42597728,53 L16.1250355,13.2827744 C18.264794,6.59052447 24.89612,2 32.4237734,2 Z" id="Rectangle-Copy-6" fill="#F5D7D4" fill-rule="nonzero"></path>
+                <path d="M5.19239643,51 L17.7455392,14.1384482 C19.7924328,8.06544591 25.5202439,3.97155312 31.9701555,3.97155312 L124.029846,3.97155312 C130.479757,3.97155312 136.207568,8.06544591 138.254462,14.1384482 L150.91234,51 L154.896616,51 L142.047693,12.8780671 C139.454961,5.18559754 132.199734,0 124.029846,0 L31.9701555,0 C23.8002674,0 16.5450401,5.18559754 13.9523082,12.8780671 L1.103385,51 L5.19239643,51 Z" id="Path" fill="#33302B" fill-rule="nonzero"></path>
+                <polygon id="Rectangle" fill="#33302B" points="1.44373964 50 154.56044 50 155.882014 54 0.112520722 54"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

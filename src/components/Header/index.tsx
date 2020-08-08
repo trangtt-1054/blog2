@@ -9,8 +9,10 @@ import ThemeToggler from "./themeToggler"
 import styled from "styled-components"
 import { TabInfo } from "../../types/TabInfo"
 import { DropResult } from "react-beautiful-dnd"
-import inactiveTab from "../../assets/elements/inactive-tab.svg"
-import activeTab from "../../assets/elements/active-tab.svg"
+import inactiveTab from "../../assets/elements/new-inactive-tab.svg"
+import activeTab from "../../assets/elements/new-active-tab.svg"
+import activeTabDragging from "../../assets/elements/active-tab-dragging.svg"
+import inactiveDragging from "../../assets/elements/inactive-tab-dragging.svg"
 
 const reorder = (list: TabInfo[], startIndex: number, endIndex: number) => {
   const result = Array.from(list)
@@ -27,7 +29,6 @@ const getTabItemStyle = (
   index: number
 ) => ({
   userSelect: "none",
-
   //background: isDragging ? "#96bb7c" : "#eebb4d",
   //background: colors[index % colors.length],
   ...draggableStyle,
@@ -36,9 +37,7 @@ const getTabItemStyle = (
 })
 
 const getListStyle = (isDraggingOver: boolean) => ({
-  //background: "beige",
   display: "flex",
-  // overflow: "auto",
 })
 
 type Props = {}
@@ -60,6 +59,28 @@ const Header: FC<Props> = props => {
     dispatch({ type: "DRAG_TAB", payload: newTabsOrder })
   }
 
+  const getTabImg = (active: boolean, isDragging: boolean) => {
+    if (active) {
+      return isDragging ? activeTabDragging : activeTab
+    } else {
+      return isDragging ? inactiveDragging : inactiveTab
+    }
+  }
+
+  const getTabIconColor = (active: boolean, path: string) => {
+    if (active) {
+      if (path === "/") return "#FF9B0C"
+      if (path === "/portfolio") return "#E544FF"
+      if (path === "/stories") return "#26F0F5"
+      if (path === "/about") return "#42EB5D"
+    } else if (!active) {
+      if (path === "/") return "#EEBD7F"
+      if (path === "/portfolio") return "#D184DD"
+      if (path === "/stories") return "#75C9CB"
+      if (path === "/about") return "#9AD4A3"
+    }
+  }
+
   return (
     <HeaderWrapper theme={state.theme}>
       <TabsWrapper style={{ display: "flex" }}>
@@ -75,17 +96,23 @@ const Header: FC<Props> = props => {
                   <Draggable key={tab.id} draggableId={tab.id} index={index}>
                     {(provided, snapshot) => (
                       <TabDiv
-                        color={tab.color}
                         active={tab.active}
+                        isDragging={snapshot.isDragging}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
                         <img
                           src={tab.active ? activeTab : inactiveTab}
+                          //src={getTabImg(tab.active, snapshot.isDragging)}
                           alt="Tab background"
                         />
-                        <MyLink to={tab.path}>{tab.content}</MyLink>
+                        <TabTitle>
+                          <TabIcon
+                            color={getTabIconColor(tab.active, tab.path)}
+                          ></TabIcon>
+                          <MyLink to={tab.path}>{tab.content}</MyLink>
+                        </TabTitle>
                       </TabDiv>
                     )}
                   </Draggable>
@@ -114,19 +141,39 @@ const TabsWrapper = styled.div`
 `
 
 const TabDiv = styled.div`
-  width: 155px;
-  height: 50px;
+  width: 135px;
+  height: 46px;
   text-align: center;
   position: relative;
-  overflow: ${({ active }) => (active ? "visible" : "hidden")};
+  overflow: ${({ active, isDragging }) =>
+    active || isDragging ? "visible" : "hidden"};
+  font-size: 22px;
+  font-weight: 800;
 `
-const MyLink = styled(Link)`
-  text-decoration: none;
-  color: #676767;
+
+const TabTitle = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+`
+
+const TabIcon = styled.div`
+  width: 16px;
+  height: 16px;
+  border: 4px solid #33302b;
+  background: #eebd7f;
+  border-radius: 30px;
+  margin-right: 6px;
+  background: ${({ color }) => color};
+`
+
+const MyLink = styled(Link)`
+  text-decoration: none;
+  color: #33302b;
+  padding-bottom: 3px;
 `
 
 export default Header

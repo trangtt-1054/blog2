@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="154px" height="54px" viewBox="0 0 154 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>inactive-tab</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard">
+            <g id="inactive-tab">
+                <path d="M31.4237734,2 L122.602249,2 C130.117528,2 136.741038,6.57571318 138.891449,13.2530516 L151.691801,53 L2.42597728,53 L15.1250355,13.2827744 C17.264794,6.59052447 23.89612,2 31.4237734,2 Z" id="Rectangle-Copy-6" fill="#F5D7D4" fill-rule="nonzero"></path>
+                <path d="M4.19239643,51 L16.7455392,14.1384482 C18.7924328,8.06544591 24.5202439,3.97155312 30.9701555,3.97155312 L123.029846,3.97155312 C129.479757,3.97155312 135.207568,8.06544591 137.254462,14.1384482 L149.91234,51 L153.896616,51 L141.047693,12.8780671 C138.454961,5.18559754 131.199734,0 123.029846,0 L30.9701555,0 C22.8002674,0 15.5450401,5.18559754 12.9523082,12.8780671 L0.103385,51 L4.19239643,51 Z" id="Path" fill="#33302B" fill-rule="nonzero"></path>
+                <rect id="Rectangle" fill="#33302B" x="0" y="50" width="154" height="4"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

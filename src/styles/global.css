@@ -1,6 +1,6 @@
-html {
-  /* ÷background-color: beige; */
-  /* overflow: auto; */
+html,
+body {
+  font-family: "Dosis", sans-serif;
 }
 
 ::-webkit-scrollbar {
