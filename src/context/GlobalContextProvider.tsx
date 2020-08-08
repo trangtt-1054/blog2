@@ -18,10 +18,28 @@ export const GlobalDispatchContext = createContext<Dispatch | undefined>(
 
 const initialState: State = {
   tabs: [
-    { id: "tab-0", path: "/", content: "Home", color: "#8fcfd1" },
-    { id: "tab-1", path: "/stories", content: "Stories", color: "#f6ab6c" },
-    { id: "tab-2", path: "/portfolio", content: "Portfolio", color: "#96bb7c" },
-    { id: "tab-3", path: "/about", content: "Bout", color: "#eebb4d" },
+    { id: "tab-0", path: "/", content: "Home", color: "#8fcfd1", active: true },
+    {
+      id: "tab-1",
+      path: "/stories",
+      content: "Stories",
+      color: "#f6ab6c",
+      active: false,
+    },
+    {
+      id: "tab-2",
+      path: "/portfolio",
+      content: "Portfolio",
+      color: "#96bb7c",
+      active: false,
+    },
+    {
+      id: "tab-3",
+      path: "/about",
+      content: "Bout",
+      color: "#eebb4d",
+      active: false,
+    },
   ],
   theme: "light",
   pageIndex: 1,
@@ -38,6 +56,15 @@ const reducer = (state: State, action: Action) => {
       return { ...state, pageIndex: action.payload }
     case "SEARCH":
       return { ...state, searchTerm: action.payload }
+    case "SET_ACTIVE_TAB":
+      return {
+        ...state,
+        tabs: state.tabs.map(tab =>
+          tab.id === action.payload
+            ? { ...tab, active: true }
+            : { ...tab, active: false }
+        ),
+      }
     default:
       throw new Error("Bad Action Type")
   }

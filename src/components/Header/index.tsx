@@ -9,7 +9,8 @@ import ThemeToggler from "./themeToggler"
 import styled from "styled-components"
 import { TabInfo } from "../../types/TabInfo"
 import { DropResult } from "react-beautiful-dnd"
-import svg from "../../assets/elements/inactive-tab.svg"
+import inactiveTab from "../../assets/elements/inactive-tab.svg"
+import activeTab from "../../assets/elements/active-tab.svg"
 
 const reorder = (list: TabInfo[], startIndex: number, endIndex: number) => {
   const result = Array.from(list)
@@ -75,11 +76,15 @@ const Header: FC<Props> = props => {
                     {(provided, snapshot) => (
                       <TabDiv
                         color={tab.color}
+                        active={tab.active}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
-                        <img src={svg} alt="Tab background" />
+                        <img
+                          src={tab.active ? activeTab : inactiveTab}
+                          alt="Tab background"
+                        />
                         <MyLink to={tab.path}>{tab.content}</MyLink>
                       </TabDiv>
                     )}
@@ -113,7 +118,7 @@ const TabDiv = styled.div`
   height: 50px;
   text-align: center;
   position: relative;
-  overflow: hidden;
+  overflow: ${({ active }) => (active ? "visible" : "hidden")};
 `
 const MyLink = styled(Link)`
   text-decoration: none;

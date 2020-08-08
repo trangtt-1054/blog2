@@ -13,9 +13,9 @@ const Layout: FC<Props> = props => {
   const activeTab = state.tabs.find(tab => tab.path === location)
   return (
     <PageLayout>
-      <Container color={activeTab.color}>
+      <Container>
         <Header />
-        <Page>
+        <Page active={activeTab.active}>
           <PageContent>{props.children}</PageContent>
         </Page>
       </Container>
@@ -37,7 +37,7 @@ const Container = styled.div`
 `
 
 const Page = styled.div`
-  background: #f5d7d4;
+  background: ${({ active }) => (active ? "#FBF5E6" : "#F5D7D4")};
   border: 4px solid #33302b;
   height: 82vh;
   border-radius: 17px;

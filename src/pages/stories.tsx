@@ -1,9 +1,18 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
+import {
+  GlobalDispatchContext,
+  GlobalStateContext,
+} from "../context/GlobalContextProvider"
 import Layout from "../components/Layout"
 import PostList from "../components/Stories"
+
 import { graphql } from "gatsby"
 
 const Stories = (props: any) => {
+  const state = useContext(GlobalStateContext)
+  const dispatch = useContext(GlobalDispatchContext)
+  useEffect(() => dispatch({ type: "SET_ACTIVE_TAB", payload: "tab-1" }), [])
+  console.log(state)
   const {
     data: {
       allMdx: { edges },
