@@ -32,20 +32,19 @@ const PageLayout = styled.div`
 const Container = styled.div`
   /* max-height: 75vh; */
   max-width: 80%;
-  margin: 6vh auto;
+  margin: 4vh auto 0;
   position: relative;
 `
 
 const Page = styled.div`
   background: #fbf5e6;
   border: 4px solid #33302b;
-  height: 82vh;
+  height: 86vh;
   border-radius: 17px;
   overflow: hidden;
   padding: 30px 30px;
 `
 const PageContent = styled.div`
   overflow-y: scroll;
-  background: white;
   height: 100%;
 `
