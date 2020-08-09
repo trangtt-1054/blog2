@@ -75,7 +75,9 @@ const PostPageContainer: FC<Props> = props => {
           <ClearSearch onClick={handleClearSearch}>clear</ClearSearch>
         </SearchArea>
       </SideBar>
-      <PostListContainer myList={myList} hasMore={hasMore} seeMore={seeMore} />
+      <PostsArea>
+        <PostList myList={myList} hasMore={hasMore} seeMore={seeMore} />
+      </PostsArea>
     </PageWrapper>
   )
 }
@@ -85,6 +87,7 @@ export default PostPageContainer
 const PageWrapper = styled.div`
   display: grid;
   grid-template-columns: 2fr 5fr;
+  height: 100%;
 `
 
 const SideBar = styled.div`
@@ -140,6 +143,7 @@ const ClearSearch = styled.button`
   }
 `
 
-const PostListContainer = styled(PostList)`
+const PostsArea = styled.div`
   grid-column: 2;
+  overflow-y: scroll;
 `
