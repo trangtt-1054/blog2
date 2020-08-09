@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import React, { FC, useRef, useEffect, useState } from "react"
 import { Link } from "gatsby"
 import TagList from "../TagList"
 import Img from "gatsby-image"
@@ -9,6 +9,8 @@ type Props = {
 }
 
 const PostCard: FC<Props> = props => {
+  const cardRef = useRef(null)
+  const [span, setSpan] = useState(0)
   const {
     post: {
       node: {
@@ -17,13 +19,23 @@ const PostCard: FC<Props> = props => {
     },
   } = props
 
+  const calculateSpan = () => {
+    const height = cardRef.current.clientHeight + 36
+    const span = Math.ceil(height / 10)
+    setSpan(span)
+  }
+
+  useEffect(() => calculateSpan(), [])
+
   return (
-    <Card>
-      <Thumb>
-        <Img fluid={featureImage.childImageSharp.fluid} alt={title}></Img>
-      </Thumb>
-      <div>
-        <PostTitle to={`/stories/${slug}`}>{title}</PostTitle>
+    <Card span={span}>
+      <div ref={cardRef}>
+        <Thumb>
+          <Img fluid={featureImage.childImageSharp.fluid} alt={title}></Img>
+        </Thumb>
+        <div>
+          <PostTitle to={`/stories/${slug}`}>{title}</PostTitle>
+        </div>
       </div>
 
       {/* <Link to={`/stories/${post.node.frontmatter.slug}`}>
@@ -41,7 +53,8 @@ const PostCard: FC<Props> = props => {
 export default PostCard
 
 const Card = styled.div`
-  width: 33.3%;
+  grid-row-end: ${({ span }) => `span ${span}`};
+  width: 100%;
   border: 4px solid #33302b;
   padding: 8px 8px 20px 8px;
   display: flex;
