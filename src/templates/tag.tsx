@@ -9,6 +9,7 @@ const TagPageTemplate = (props: any) => {
       allMdx: { edges },
     },
   } = props
+
   return (
     <Layout location="/stories">
       <PostPageContainer posts={edges} />
