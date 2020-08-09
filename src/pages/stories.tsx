@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import { GlobalDispatchContext } from "../context/GlobalContextProvider"
 import Layout from "../components/Layout"
-import PostList from "../components/Stories"
+import PostPageContainer from "../components/Stories"
 
 import { graphql } from "gatsby"
 
@@ -17,7 +17,7 @@ const Stories = (props: any) => {
   const { uri } = props
   return (
     <Layout location={uri}>
-      <PostList posts={edges} />
+      <PostPageContainer posts={edges} />
     </Layout>
   )
 }
@@ -35,6 +35,13 @@ export const query = graphql`
             slug
             tags
             meta_title
+            featureImage {
+              childImageSharp {
+                fluid(maxWidth: 1000) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
           id
         }

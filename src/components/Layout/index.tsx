@@ -45,6 +45,6 @@ const Page = styled.div`
   padding: 30px 30px;
 `
 const PageContent = styled.div`
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   height: 100%;
 `
