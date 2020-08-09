@@ -35,6 +35,13 @@ export const query = graphql`
             slug
             tags
             meta_title
+            featureImage {
+              childImageSharp {
+                fluid(maxWidth: 1000) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
           id
         }
