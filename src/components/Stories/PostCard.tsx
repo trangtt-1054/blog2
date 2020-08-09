@@ -25,7 +25,7 @@ const PostCard: FC<Props> = props => {
     setSpan(span)
   }
 
-  useEffect(() => calculateSpan(), [])
+  useEffect(() => calculateSpan(), [cardRef.current])
 
   return (
     <Card span={span}>

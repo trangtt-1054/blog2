@@ -32,6 +32,13 @@ export const taggedPostsQuery = graphql`
             tags
             date(formatString: "MMMM DD, YY")
             meta_title
+            featureImage {
+              childImageSharp {
+                fluid(maxWidth: 1000) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
           id
         }

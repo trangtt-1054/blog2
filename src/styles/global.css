@@ -1,3 +1,21 @@
+@font-face {
+  font-family: "Dosis";
+  src: url("../../static/fonts/dosis/Dosis-Bold.woff") format("woff"),
+    url("../../static/fonts/dosis/Dosis-Bold.woff2") format("woff2"),
+    url("../../static/fonts/dosis/Dosis-ExtraBold.woff") format("woff"),
+    url("../../static/fonts/dosis/Dosis-ExtraBold.woff2") format("woff2"),
+    url("../../static/fonts/dosis/Dosis-ExtraLight.woff") format("woff"),
+    url("../../static/fonts/dosis/Dosis-ExtraLight.woff2") format("woff2"),
+    url("../../static/fonts/dosis/Dosis-Light.woff") format("woff"),
+    url("../../static/fonts/dosis/Dosis-Light.woff2") format("woff2"),
+    url("../../static/fonts/dosis/Dosis-Medium.woff") format("woff"),
+    url("../../static/fonts/dosis/Dosis-Medium.woff2") format("woff2"),
+    url("../../static/fonts/dosis/Dosis-Regular.woff") format("woff"),
+    url("../../static/fonts/dosis/Dosis-Regular.woff2") format("woff2")
+      url("../../static/fonts/dosis/Dosis-SemiBold.woff") format("woff")
+      url("../../static/fonts/dosis/Dosis-SemiBold.woff2") format("woff2");
+}
+
 html,
 body {
   font-family: "Dosis", sans-serif;

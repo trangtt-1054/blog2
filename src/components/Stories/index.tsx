@@ -127,14 +127,13 @@ const SearchIcon = styled.img`
 
 const ClearSearch = styled.button`
   height: 44px;
-  width: 90px;
   border: 4px solid #33302b;
   background: transparent;
   font-weight: 800;
   border-radius: 10px;
   font-size: 20px;
   color: #33302b;
-  padding-bottom: 6px;
+  padding: 0 15px 6px;
   &:focus {
     outline: 0;
   }
