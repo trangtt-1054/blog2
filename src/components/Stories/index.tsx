@@ -6,6 +6,7 @@ import {
   GlobalStateContext,
 } from "../../context/GlobalContextProvider"
 import searchIcon from "../../assets/elements/search-icon.svg"
+import { Link } from "gatsby"
 
 type Props = {
   posts: any
@@ -17,6 +18,13 @@ const PostPageContainer: FC<Props> = props => {
   const dispatch = useContext(GlobalDispatchContext)
   const state = useContext(GlobalStateContext)
   const { posts } = props
+  const tagList: string[] = []
+
+  posts.forEach(post =>
+    post.node.frontmatter.tags.forEach(
+      (tag: string) => !tagList.includes(tag) && tagList.push(tag)
+    )
+  )
 
   const handleClearSearch = () => {
     setPostSource(posts)
@@ -59,7 +67,6 @@ const PostPageContainer: FC<Props> = props => {
   return (
     <PageWrapper>
       <SideBar>
-        {state.searchTerm && "terms exist"}
         <SearchArea>
           <SearchWrapper>
             <StyledInput
@@ -74,6 +81,19 @@ const PostPageContainer: FC<Props> = props => {
           </SearchWrapper>
           <ClearSearch onClick={handleClearSearch}>clear</ClearSearch>
         </SearchArea>
+        <div>
+          {state.searchTerm && `Search results for "${state.searchTerm}"`}
+        </div>
+        <Category>
+          categories
+          <CategoryList>
+            {tagList.map(tag => (
+              <Tag>
+                <Link to={`/stories/tags/${tag}`}>#{tag}</Link>
+              </Tag>
+            ))}
+          </CategoryList>
+        </Category>
       </SideBar>
       <PostsArea>
         <PostList myList={myList} hasMore={hasMore} seeMore={seeMore} />
@@ -97,6 +117,7 @@ const SideBar = styled.div`
 
 const SearchArea = styled.div`
   display: flex;
+  margin-bottom: 100px;
 `
 
 const SearchWrapper = styled.div`
@@ -140,6 +161,22 @@ const ClearSearch = styled.button`
   &:hover {
     background: #f5d7d4;
   }
+`
+
+const Category = styled.div``
+
+const CategoryList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
+
+const Tag = styled.div`
+  border-radius: 7px;
+  border: 3px solid #33302b;
+  font-weight: 700;
+  padding: 1px 12px 5px;
+  margin-right: 6px;
+  margin-bottom: 6px;
 `
 
 const PostsArea = styled.div`

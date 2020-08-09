@@ -1,0 +1,37 @@
+---
+title: Being obsessed with oneself
+slug: being-obsessed-with-oneself
+date: 2020-08-30
+meta_title: mendokuse
+featureImage: car.jpg
+tags:
+  - japanese
+  - life
+---
+
+## 1. Settings Sync
+
+This is so cool
+
+## 2. change-case
+
+This is so `lame`
+
+Wow, the useUndo thing itself is actually very simple now. If we had started with useReducer from the get-go, we wouldn't have even considered adding anything to our dependency array because those functions are so simple they don't need anything. All the logic lives in our reducer. That helps us avoid the issue naturally.
+
+You may find it interesting that the switch cases in our reducer are basically exactly what the contents of our functions were before we made the change.
+
+When one element of your state relies on the value of another element of your state in order to update: useReducer
+
+Conclusion
+So if you want some "rules" (NOT ESLINT RULES), here they are:
+
+When it's just an independent element of state you're managing: useState
+When one element of your state relies on the value of another element of your state in order to update: useReducer
+Outside of these "rules," everything else is really subjective. Honestly, even the "rules" are subjective because as I demonstrated, you can do everything you want with either one.
+
+Also, please note that this applies on a case-by-case basis. You can absolutely use useState in the same component or hook that's using useReducer. And you can have multiple useStates and multiple useReducers in a single hook or component. That's no problem. Separate state logically by domain. If it changes together, it's likely better to keep together in a reducer. If something is pretty independent from other elements of state in that hook/component, then putting it with other elements of state is just adding unnecessary complexity and noise to that reducer and you'd be better off leaving it out on its own.
+
+So it's not just "when I have more than X number of useStates I switch to useReducer." It's more nuanced than that. But hopefully this post helps you understand those nuances and reach for the tool that has the trade-offs that work best for your situation. In general, I suggest starting with useState, and moving to useReducer when you notice elements of state need to change together.
+
+Good luck!
