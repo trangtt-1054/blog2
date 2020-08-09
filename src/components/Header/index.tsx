@@ -9,8 +9,8 @@ import ThemeToggler from "./themeToggler"
 import styled from "styled-components"
 import { TabInfo } from "../../types/TabInfo"
 import { DropResult } from "react-beautiful-dnd"
-import inactiveTab from "../../assets/elements/new-inactive-tab.svg"
-import activeTab from "../../assets/elements/new-active-tab.svg"
+import inactiveTab from "../../assets/elements/inactive-tab.svg"
+import activeTab from "../../assets/elements/active-tab.svg"
 import activeTabDragging from "../../assets/elements/active-tab-dragging.svg"
 import inactiveDragging from "../../assets/elements/inactive-tab-dragging.svg"
 
@@ -103,8 +103,8 @@ const Header: FC<Props> = props => {
                         {...provided.dragHandleProps}
                       >
                         <img
-                          src={tab.active ? activeTab : inactiveTab}
-                          //src={getTabImg(tab.active, snapshot.isDragging)}
+                          //src={tab.active ? activeTab : inactiveTab}
+                          src={getTabImg(tab.active, snapshot.isDragging)}
                           alt="Tab background"
                         />
                         <TabTitle>
