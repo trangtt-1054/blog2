@@ -5,6 +5,7 @@ import {
   GlobalDispatchContext,
   GlobalStateContext,
 } from "../../context/GlobalContextProvider"
+import searchIcon from "../../assets/elements/search-icon.svg"
 
 type Props = {
   posts: any
@@ -54,16 +55,17 @@ const PostPageContainer: FC<Props> = props => {
     <PageWrapper>
       <SideBar>
         {state.searchTerm && "terms exist"}
-        <div style={{ margin: 20 }}>
-          <input
+        <SearchWrapper>
+          <StyledInput
             name="search"
             type=""
             id="search"
-            placeholder="Search Posts"
+            placeholder="search posts..."
             onChange={handleChange}
             value={state.searchTerm}
           />
-        </div>
+          <SearchIcon src={searchIcon} alt="search icon" />
+        </SearchWrapper>
       </SideBar>
       <PostListContainer myList={myList} hasMore={hasMore} seeMore={seeMore} />
     </PageWrapper>
@@ -79,11 +81,31 @@ const PageWrapper = styled.div`
 
 const SideBar = styled.div`
   grid-column: 1 / 2;
-  background: yellow;
   overflow: hidden;
+`
+
+const SearchWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border: 4px solid #33302b;
+  height: 44px;
+  width: 230px;
+  border-radius: 10px;
+  padding-left: 10px;
+`
+const StyledInput = styled.input`
+  border: 0;
+  background: transparent;
+  &:focus {
+    outline: none;
+  }
+`
+
+const SearchIcon = styled.img`
+  height: 100%;
+  padding: 4px 6px;
 `
 
 const PostListContainer = styled(PostList)`
   grid-column: 2;
-  overflow-y: scroll;
 `
