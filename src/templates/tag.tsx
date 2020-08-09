@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "../components/Layout"
 import { graphql } from "gatsby"
-import PostList from "../components/Stories"
+import PostPageContainer from "../components/Stories"
 
 const TagPageTemplate = (props: any) => {
   const {
@@ -11,7 +11,7 @@ const TagPageTemplate = (props: any) => {
   } = props
   return (
     <Layout location="/stories">
-      <PostList posts={edges} />
+      <PostPageContainer posts={edges} />
     </Layout>
   )
 }

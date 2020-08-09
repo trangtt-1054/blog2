@@ -1,18 +1,18 @@
-import React, { useContext, useState, FC } from "react"
-import { Link } from "gatsby"
+import React, { FC, useContext, useState } from "react"
+import PostList from "./PostList"
+import styled from "styled-components"
 import {
   GlobalDispatchContext,
   GlobalStateContext,
 } from "../../context/GlobalContextProvider"
-import TagList from "../TagList"
-
-const perPage = 3
 
 type Props = {
   posts: any
 }
 
-const PostList: FC<Props> = props => {
+const perPage = 3
+
+const PostPageContainer: FC<Props> = props => {
   const dispatch = useContext(GlobalDispatchContext)
   const state = useContext(GlobalStateContext)
   const { posts } = props
@@ -49,38 +49,41 @@ const PostList: FC<Props> = props => {
   }
 
   const myList = postSource.slice(0, state.pageIndex * perPage)
+
   return (
-    <div>
-      {state.searchTerm && "terms exist"}
-      <div style={{ margin: 20 }}>
-        <input
-          name="search"
-          type=""
-          id="search"
-          placeholder="Search Posts"
-          onChange={handleChange}
-          value={state.searchTerm}
-        />
-      </div>
-      {myList.map((post: any) => (
-        <div key={post.node.id}>
-          <Link to={`/stories/${post.node.frontmatter.slug}`}>
-            <h2>{post.node.frontmatter.title}</h2>
-          </Link>
-          <div>
-            <TagList tags={post.node.frontmatter.tags} />
-            <span>{post.node.frontmatter.date}</span>
-            {post.node.frontmatter.meta_title}
-          </div>
+    <PageWrapper>
+      <SideBar>
+        {state.searchTerm && "terms exist"}
+        <div style={{ margin: 20 }}>
+          <input
+            name="search"
+            type=""
+            id="search"
+            placeholder="Search Posts"
+            onChange={handleChange}
+            value={state.searchTerm}
+          />
         </div>
-      ))}
-      {hasMore ? (
-        <div style={{ margin: "auto" }}>
-          <button onClick={seeMore}>More Rubbish Posts</button>
-        </div>
-      ) : null}
-    </div>
+      </SideBar>
+      <PostListContainer myList={myList} hasMore={hasMore} seeMore={seeMore} />
+    </PageWrapper>
   )
 }
 
-export default PostList
+export default PostPageContainer
+
+const PageWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+`
+
+const SideBar = styled.div`
+  grid-column: 1 / 2;
+  background: yellow;
+  overflow: hidden;
+`
+
+const PostListContainer = styled(PostList)`
+  grid-column: 2;
+  overflow-y: scroll;
+`
