@@ -57,6 +57,7 @@ const Thumb = styled.div`
   width: 100%;
   border-radius: 7px;
   border: 3px solid #33302b;
+  overflow: hidden;
 `
 const PostTitle = styled(Link)`
   text-decoration: none;
