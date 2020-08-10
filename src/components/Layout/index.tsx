@@ -26,13 +26,15 @@ const Layout: FC<Props> = props => {
 export default Layout
 
 const PageLayout = styled.div`
+  padding-top: 40px;
   /* padding: 50px 200px; */
 `
 
 const Container = styled.div`
   /* max-height: 75vh; */
+  margin: auto;
   max-width: 80%;
-  margin: 4vh auto 0;
+  /* margin: 4vh auto 0; */
   position: relative;
 `
 

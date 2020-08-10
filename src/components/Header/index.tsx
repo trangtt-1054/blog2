@@ -123,7 +123,7 @@ const Header: FC<Props> = props => {
           </Droppable>
         </DragDropContext>
       </TabsWrapper>
-      <ThemeToggler theme={state.theme} />
+      {/* <ThemeToggler theme={state.theme} /> */}
     </HeaderWrapper>
   )
 }
