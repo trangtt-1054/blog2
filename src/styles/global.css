@@ -19,6 +19,14 @@
 html,
 body {
   font-family: "Dosis", sans-serif;
+  font-weight: 700;
+  color: #33302b;
+}
+
+button,
+a {
+  color: #33302b;
+  text-decoration: none;
 }
 
 ::-webkit-scrollbar {

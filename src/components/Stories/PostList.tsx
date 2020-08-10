@@ -18,7 +18,7 @@ const PostList: FC<Props> = props => {
         ))}
       </PostGrid>
       {hasMore ? (
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", paddingTop: 30 }}>
           <SeeMoreButton onClick={seeMore}>more rubbish</SeeMoreButton>
         </div>
       ) : null}

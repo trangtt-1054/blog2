@@ -6,18 +6,21 @@ import {
   GlobalStateContext,
 } from "../../context/GlobalContextProvider"
 import searchIcon from "../../assets/elements/search-icon.svg"
+import goBackIcon from "../../assets/elements/go-back-icon.svg"
 import { Link } from "gatsby"
 
 type Props = {
   posts: any
+  pathContext?: string
 }
 
 const perPage = 3
 
 const PostPageContainer: FC<Props> = props => {
+  console.log(props)
   const dispatch = useContext(GlobalDispatchContext)
   const state = useContext(GlobalStateContext)
-  const { posts } = props
+  const { posts, pathContext } = props
   const tagList: string[] = []
 
   posts.forEach(post =>
@@ -85,14 +88,23 @@ const PostPageContainer: FC<Props> = props => {
           {state.searchTerm && `Search results for "${state.searchTerm}"`}
         </div>
         <Category>
-          categories
-          <CategoryList>
-            {tagList.map(tag => (
-              <Tag>
-                <Link to={`/stories/tags/${tag}`}>#{tag}</Link>
-              </Tag>
-            ))}
-          </CategoryList>
+          {pathContext ? (
+            <div>
+              <p>Rubbish stuff about {`"${pathContext}"`}</p>
+              <GoBackBtn to="/stories">
+                <img src={goBackIcon} alt="back icon" />
+                <p style={{ marginBottom: 5 }}>all posts</p>
+              </GoBackBtn>
+            </div>
+          ) : (
+            <CategoryList>
+              {tagList.map(tag => (
+                <Tag>
+                  <Link to={`/stories/tags/${tag}`}>#{tag}</Link>
+                </Tag>
+              ))}
+            </CategoryList>
+          )}
         </Category>
       </SideBar>
       <PostsArea>
@@ -153,8 +165,32 @@ const ClearSearch = styled.button`
   font-weight: 800;
   border-radius: 10px;
   font-size: 20px;
-  color: #33302b;
   padding: 0 15px 6px;
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+    background: #f5d7d4;
+  }
+`
+
+const GoBackBtn = styled(Link)`
+  width: fit-content;
+  height: 44px;
+  border: 4px solid #33302b;
+  background: transparent;
+  font-weight: 800;
+  border-radius: 10px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  /* padding: 0 15px 6px 13px; */
+  img {
+    margin-right: 21px;
+    margin-bottom: 0;
+    height: 20px;
+  }
   &:focus {
     outline: 0;
   }
@@ -182,4 +218,5 @@ const Tag = styled.div`
 const PostsArea = styled.div`
   grid-column: 2;
   overflow-y: scroll;
+  padding-right: 20px;
 `

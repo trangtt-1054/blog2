@@ -26,7 +26,7 @@ const Layout: FC<Props> = props => {
 export default Layout
 
 const PageLayout = styled.div`
-  padding-top: 40px;
+  padding-top: 30px;
   /* padding: 50px 200px; */
 `
 
@@ -41,10 +41,10 @@ const Container = styled.div`
 const Page = styled.div`
   background: #fbf5e6;
   border: 4px solid #33302b;
-  height: 86vh;
+  height: 87vh;
   border-radius: 17px;
   overflow: hidden;
-  padding: 30px 30px;
+  padding: 30px 25px 30px 30px;
 `
 const PageContent = styled.div`
   /* overflow-y: scroll; */

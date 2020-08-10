@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import PostPageContainer from "../components/Stories"
 
 const TagPageTemplate = (props: any) => {
+  console.log(props)
   const {
     data: {
       allMdx: { edges },
@@ -12,7 +13,7 @@ const TagPageTemplate = (props: any) => {
 
   return (
     <Layout location="/stories">
-      <PostPageContainer posts={edges} />
+      <PostPageContainer posts={edges} pathContext={props.pathContext.tag} />
     </Layout>
   )
 }
