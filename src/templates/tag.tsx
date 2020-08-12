@@ -1,10 +1,12 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 import Layout from "../components/Layout"
 import { graphql } from "gatsby"
 import PostPageContainer from "../components/Stories"
+import { GlobalDispatchContext } from "../context/GlobalContextProvider"
 
 const TagPageTemplate = (props: any) => {
-  console.log(props)
+  const dispatch = useContext(GlobalDispatchContext)
+  useEffect(() => dispatch({ type: "SET_ACTIVE_TAB", payload: "tab-1" }), [])
   const {
     data: {
       allMdx: { edges },
