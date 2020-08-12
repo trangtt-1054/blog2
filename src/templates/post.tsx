@@ -74,13 +74,12 @@ const PostPage = styled.div`
   padding: 0 13%;
 `
 const Banner = styled.div`
-  text-align: center;
-  position: relative;
-  padding-top: ${props => `${props.offset}px`};
-  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 80px);
 `
 
 const Headline = styled.div`
+  grid-row: 1 / span 2;
   text-align: center;
   color: red;
   background: white;
@@ -89,7 +88,6 @@ const Headline = styled.div`
   margin: auto;
   padding: 20px;
   border: 3px solid #33302b;
-  position: absolute;
   z-index: 10;
   top: 0;
   left: 50%;
@@ -107,6 +105,7 @@ const FeatureImage = styled.div`
   overflow: hidden;
   text-align: center;
   margin: auto;
+  grid-row: 2 / span 2;
 
   img {
     z-index: 1;
