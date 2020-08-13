@@ -75,23 +75,28 @@ const PostPage = styled.div`
 `
 const Banner = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 80px);
+  grid-template-rows: 54px 54px auto;
+  grid-auto-columns: 50px auto 50px;
+  margin-bottom: 30px;
 `
 
 const Headline = styled.div`
   grid-row: 1 / span 2;
+  grid-column: 2 / 3;
   text-align: center;
   color: red;
   background: white;
   border-radius: 17px;
   width: fit-content;
   margin: auto;
-  padding: 20px;
+  height: 108px;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0 20px;
   border: 3px solid #33302b;
   z-index: 10;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  max-width: 500px;
   h2 {
     margin-bottom: 0;
   }
@@ -105,6 +110,7 @@ const FeatureImage = styled.div`
   overflow: hidden;
   text-align: center;
   margin: auto;
+  grid-column: 2 / 3;
   grid-row: 2 / span 2;
 
   img {
