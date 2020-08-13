@@ -57,7 +57,7 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               //optimization option, kể cả có up lên ảnh 3000px thì lúc serve chỉ còn 1200
-              maxWidth: 2048,
+              maxWidth: 700,
             },
           },
         ],
