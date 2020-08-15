@@ -6,8 +6,8 @@ import {
   GlobalStateContext,
 } from "../../context/GlobalContextProvider"
 import searchIcon from "../../assets/elements/search-icon.svg"
-import goBackIcon from "../../assets/elements/go-back-icon.svg"
 import { Link } from "gatsby"
+import GoBackButton from "../../components/primitive/GoBackButton"
 
 type Props = {
   posts: any
@@ -91,10 +91,7 @@ const PostPageContainer: FC<Props> = props => {
           {pathContext ? (
             <div>
               <p>Rubbish stuff about {`"${pathContext}"`}</p>
-              <GoBackBtn to="/stories">
-                <img src={goBackIcon} alt="back icon" />
-                <p style={{ marginBottom: 5 }}>all posts</p>
-              </GoBackBtn>
+              <GoBackButton />
             </div>
           ) : (
             <CategoryList>
@@ -166,31 +163,6 @@ const ClearSearch = styled.button`
   border-radius: 10px;
   font-size: 20px;
   padding: 0 15px 6px;
-  &:focus {
-    outline: 0;
-  }
-  &:hover {
-    background: #f5d7d4;
-  }
-`
-
-const GoBackBtn = styled(Link)`
-  width: fit-content;
-  height: 44px;
-  border: 4px solid #33302b;
-  background: transparent;
-  font-weight: 800;
-  border-radius: 10px;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  padding: 0 15px;
-  /* padding: 0 15px 6px 13px; */
-  img {
-    margin-right: 21px;
-    margin-bottom: 0;
-    height: 20px;
-  }
   &:focus {
     outline: 0;
   }

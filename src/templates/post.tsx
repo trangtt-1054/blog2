@@ -5,14 +5,11 @@ import Img from "gatsby-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import TagList from "../components/TagList"
 import { GlobalDispatchContext } from "../context/GlobalContextProvider"
+import GoBackButton from "../components/primitive/GoBackButton"
+import calendar from "../assets/elements/calendar-icon-grey.svg"
 import styled from "styled-components"
 
 const PostTemplate = (props: any) => {
-  const headlineRef = useRef(null)
-  const headlineHeight =
-    headlineRef.current && headlineRef.current.clientHeight + 6
-  console.log(headlineHeight)
-  const featureImgOffset = headlineHeight / 2
   const dispatch = useContext(GlobalDispatchContext)
   useEffect(() => dispatch({ type: "SET_ACTIVE_TAB", payload: "tab-1" }), [])
 
@@ -21,24 +18,34 @@ const PostTemplate = (props: any) => {
       mdx: { frontmatter, body },
     },
   } = props
+
   return (
     <Layout location="/stories">
-      <PostPage>
-        <Banner offset={featureImgOffset}>
-          <Headline ref={headlineRef}>
-            <h2>{frontmatter.title}</h2>
-          </Headline>
-          {/* <p>{frontmatter.meta_title}</p>
+      <Wrapper>
+        <MetaBar>
+          <GoBackButton />
+          <Date>
+            <img src={calendar} />
+            {frontmatter.date}
+          </Date>
+        </MetaBar>
+        <PostPage>
+          <Banner>
+            <Headline>
+              <h2>{frontmatter.title}</h2>
+            </Headline>
+            {/* <p>{frontmatter.meta_title}</p>
         <TagList tags={frontmatter.tags} /> */}
-          <FeatureImage>
-            <Img
-              fluid={frontmatter.featureImage.childImageSharp.fluid}
-              alt={frontmatter.title}
-            ></Img>
-          </FeatureImage>
-        </Banner>
-        <MDXRenderer>{body}</MDXRenderer>
-      </PostPage>
+            <FeatureImage>
+              <Img
+                fluid={frontmatter.featureImage.childImageSharp.fluid}
+                alt={frontmatter.title}
+              ></Img>
+            </FeatureImage>
+          </Banner>
+          <MDXRenderer>{body}</MDXRenderer>
+        </PostPage>
+      </Wrapper>
     </Layout>
   )
 }
@@ -49,7 +56,7 @@ export const query = graphql`
   query($id: String!) {
     mdx(id: { eq: $id }) {
       frontmatter {
-        date
+        date(formatString: "MMMM DD, YY")
         slug
         title
         tags
@@ -68,15 +75,40 @@ export const query = graphql`
   }
 `
 
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: 200px auto;
+  height: 100%;
+`
+const MetaBar = styled.div`
+  grid-column: 1 / 2;
+`
+
+const Date = styled.div`
+  margin-top: 30px;
+  display: flex;
+  font-size: 18px;
+  font-weight: 300;
+  align-items: center;
+  color: #87837c;
+
+  img {
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+`
+
 const PostPage = styled.div`
   height: 100%;
   overflow-y: scroll;
-  padding: 0 13%;
+  grid-column: 2 / 3;
+  padding-right: 40px;
 `
+
 const Banner = styled.div`
   display: grid;
   grid-template-rows: 54px 54px auto;
-  grid-auto-columns: 50px auto 50px;
+  grid-auto-columns: 60px auto 60px;
   margin-bottom: 30px;
 `
 
