@@ -6,9 +6,9 @@ import {
   GlobalStateContext,
 } from "../../context/GlobalContextProvider"
 import searchIcon from "../../assets/elements/search-icon.svg"
-import { Link } from "gatsby"
 import GoBackButton from "../../components/primitive/GoBackButton"
 import Button from "../../components/primitive/Button"
+import TagItem from "../primitive/TagItem"
 import { light, common } from "../../theme"
 
 type Props = {
@@ -98,9 +98,7 @@ const PostPageContainer: FC<Props> = props => {
           ) : (
             <CategoryList>
               {tagList.map(tag => (
-                <Tag>
-                  <Link to={`/stories/tags/${tag}`}>#{tag}</Link>
-                </Tag>
+                <TagItem text={tag} />
               ))}
             </CategoryList>
           )}
@@ -160,15 +158,6 @@ const Category = styled.div``
 const CategoryList = styled.div`
   display: flex;
   flex-wrap: wrap;
-`
-
-const Tag = styled.div`
-  border-radius: 7px;
-  border: ${light.subBorder};
-  font-weight: 700;
-  padding: 1px 12px 5px;
-  margin-right: 6px;
-  margin-bottom: 6px;
 `
 
 const PostsArea = styled.div`

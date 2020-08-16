@@ -32,6 +32,10 @@ h5 {
   color: #33302b;
 }
 
+body {
+  font-weight: 500;
+}
+
 button,
 a {
   color: #33302b;

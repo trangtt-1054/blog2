@@ -3,9 +3,10 @@ import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 import Img from "gatsby-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
-import TagList from "../components/TagList"
+import { MDXProvider } from "@mdx-js/react"
 import { GlobalDispatchContext } from "../context/GlobalContextProvider"
 import GoBackButton from "../components/primitive/GoBackButton"
+import TagItem from "../components/primitive/TagItem"
 import calendar from "../assets/elements/calendar-icon-grey.svg"
 import styled from "styled-components"
 import { common, light } from "../theme"
@@ -29,14 +30,17 @@ const PostTemplate = (props: any) => {
             <img src={calendar} />
             {frontmatter.date}
           </Date>
+          <CategoryList>
+            {frontmatter.tags.map((tag: string) => (
+              <TagItem key={tag} text={tag} />
+            ))}
+          </CategoryList>
         </MetaBar>
         <PostPage>
           <Banner>
             <Headline>
               <h2>{frontmatter.title}</h2>
             </Headline>
-            {/* <p>{frontmatter.meta_title}</p>
-        <TagList tags={frontmatter.tags} /> */}
             <FeatureImage>
               <Img
                 fluid={frontmatter.featureImage.childImageSharp.fluid}
@@ -44,7 +48,34 @@ const PostTemplate = (props: any) => {
               ></Img>
             </FeatureImage>
           </Banner>
-          <MDXRenderer>{body}</MDXRenderer>
+          <MDXProvider
+            components={{
+              a: (props: any) => (
+                <a
+                  {...props}
+                  style={{ textAlign: "center", display: "block" }}
+                />
+              ),
+              span: (props: any) => (
+                <span
+                  {...props}
+                  style={{ paddingBottom: 0, paddingRight: 30 }}
+                />
+              ),
+              img: props => (
+                <img
+                  {...props}
+                  style={{
+                    borderRadius: common.subRadius,
+                    border: light.subBorder,
+                    paddingBottom: 0,
+                  }}
+                />
+              ),
+            }}
+          >
+            <MDXRenderer>{body}</MDXRenderer>
+          </MDXProvider>
         </PostPage>
       </Wrapper>
     </Layout>
@@ -98,6 +129,11 @@ const Date = styled.div`
     margin-bottom: 0;
     margin-right: 10px;
   }
+`
+const CategoryList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
 `
 
 const PostPage = styled.div`

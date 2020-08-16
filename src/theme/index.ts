@@ -1,6 +1,7 @@
 const common = {
   mainRadius: "17px",
   subRadius: "10px",
+  subRadius2: "7px",
   title1: "20px",
 }
 
