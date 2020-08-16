@@ -25,7 +25,7 @@ const PostPageContainer: FC<Props> = props => {
   const { posts, pathContext } = props
   const tagList: string[] = []
 
-  posts.forEach(post =>
+  posts.forEach((post: any) =>
     post.node.frontmatter.tags.forEach(
       (tag: string) => !tagList.includes(tag) && tagList.push(tag)
     )
@@ -84,7 +84,6 @@ const PostPageContainer: FC<Props> = props => {
             />
             <SearchIcon src={searchIcon} alt="search icon" />
           </SearchWrapper>
-          {/* <ClearSearch onClick={handleClearSearch}>clear</ClearSearch> */}
           <Button text="clear" size="main" onClick={handleClearSearch} />
         </SearchArea>
         <div>

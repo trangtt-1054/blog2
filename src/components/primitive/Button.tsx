@@ -18,7 +18,7 @@ const Button: FC<Props> = ({ text, onClick, size }) => {
 
 export default Button
 
-const Wrapper = styled.button`
+const Wrapper = styled.button<{ size: string }>`
   border: ${light.mainBorder};
   background: transparent;
   border-radius: ${common.subRadius};

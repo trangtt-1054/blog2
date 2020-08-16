@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react"
 import styled from "styled-components"
 import { GlobalDispatchContext } from "../../context/GlobalContextProvider"
-import { common, light } from "../../theme"
+import { light } from "../../theme"
 
 type Props = {
   theme: string
@@ -67,7 +67,6 @@ const CheckBoxLabel = styled.label`
     margin-left: -5px;
     background: #f5d7d4;
     border: ${light.mainBorder};
-    /* box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2); */
     transition: 0.2s;
   }
 `

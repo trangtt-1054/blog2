@@ -44,7 +44,7 @@ const PostCard: FC<Props> = props => {
 
 export default PostCard
 
-const Card = styled.div`
+const Card = styled.div<{ span: number }>`
   grid-row-end: ${({ span }) => `span ${span}`};
   width: 100%;
   border: ${light.mainBorder};

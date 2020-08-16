@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react"
 import Header from "../Header"
-import { GlobalStateContext } from "../../context/GlobalContextProvider"
+//import { GlobalStateContext } from "../../context/GlobalContextProvider"
 import { common, light } from "../../theme"
 import styled from "styled-components"
 
@@ -9,14 +9,14 @@ type Props = {
 }
 
 const Layout: FC<Props> = props => {
-  const state = useContext(GlobalStateContext)
-  const { location } = props
-  const activeTab = state.tabs.find(tab => tab.path === location)
+  // const state = useContext(GlobalStateContext)
+  // const { location } = props
+  //const activeTab = state.tabs.find(tab => tab.path === location)
   return (
     <PageLayout>
       <Container>
         <Header />
-        <Page active={activeTab.active}>
+        <Page>
           <PageContent>{props.children}</PageContent>
         </Page>
       </Container>
