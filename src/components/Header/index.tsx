@@ -13,6 +13,7 @@ import inactiveTab from "../../assets/elements/inactive-tab.svg"
 import activeTab from "../../assets/elements/active-tab.svg"
 import activeTabDragging from "../../assets/elements/active-tab-dragging.svg"
 import inactiveDragging from "../../assets/elements/inactive-tab-dragging.svg"
+import { common, light } from "../../theme"
 
 const reorder = (list: TabInfo[], startIndex: number, endIndex: number) => {
   const result = Array.from(list)
@@ -131,7 +132,7 @@ const Header: FC<Props> = props => {
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  background: ${({ theme }) => (theme === "light" ? "white" : "#241663")};
+  background: ${({ theme }) => (theme === "light" ? "transparent" : "#241663")};
   align-items: center;
 `
 
@@ -163,15 +164,13 @@ const TabTitle = styled.div`
 const TabIcon = styled.div`
   width: 16px;
   height: 16px;
-  border: 4px solid #33302b;
-  background: #eebd7f;
+  border: ${light.mainBorder};
   border-radius: 30px;
   margin-right: 6px;
   background: ${({ color }) => color};
 `
 
 const MyLink = styled(Link)`
-  text-decoration: none;
   color: #33302b;
   padding-bottom: 3px;
 `

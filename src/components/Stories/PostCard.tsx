@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import TagList from "../TagList"
 import Img from "gatsby-image"
 import styled from "styled-components"
+import { light, common } from "../../theme"
 
 type Props = {
   post: any
@@ -46,7 +47,7 @@ export default PostCard
 const Card = styled.div`
   grid-row-end: ${({ span }) => `span ${span}`};
   width: 100%;
-  border: 4px solid #33302b;
+  border: ${light.mainBorder};
   padding: 8px 8px 20px 8px;
   display: flex;
   flex-direction: column;
@@ -57,11 +58,9 @@ const Card = styled.div`
 const Thumb = styled.div`
   width: 100%;
   border-radius: 7px;
-  border: 3px solid #33302b;
+  border: ${light.subBorder};
   overflow: hidden;
 `
 const PostTitle = styled(Link)`
-  text-decoration: none;
-  color: #33302b;
   font-weight: 700;
 `

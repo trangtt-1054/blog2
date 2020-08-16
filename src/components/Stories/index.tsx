@@ -8,6 +8,8 @@ import {
 import searchIcon from "../../assets/elements/search-icon.svg"
 import { Link } from "gatsby"
 import GoBackButton from "../../components/primitive/GoBackButton"
+import Button from "../../components/primitive/Button"
+import { light, common } from "../../theme"
 
 type Props = {
   posts: any
@@ -82,7 +84,8 @@ const PostPageContainer: FC<Props> = props => {
             />
             <SearchIcon src={searchIcon} alt="search icon" />
           </SearchWrapper>
-          <ClearSearch onClick={handleClearSearch}>clear</ClearSearch>
+          {/* <ClearSearch onClick={handleClearSearch}>clear</ClearSearch> */}
+          <Button text="clear" size="main" onClick={handleClearSearch} />
         </SearchArea>
         <div>
           {state.searchTerm && `Search results for "${state.searchTerm}"`}
@@ -131,19 +134,17 @@ const SearchArea = styled.div`
 
 const SearchWrapper = styled.div`
   display: flex;
-  border: 4px solid #33302b;
+  border: ${light.mainBorder};
   height: 44px;
   width: 215px;
-  border-radius: 10px;
+  border-radius: ${common.subRadius};
   padding-left: 10px;
   margin-right: 10px;
 `
 const StyledInput = styled.input`
+  outline: none;
   border: 0;
   background: transparent;
-  &:focus {
-    outline: none;
-  }
   font-style: italic;
   color: #87837c;
   font-weight: 600;
@@ -155,22 +156,6 @@ const SearchIcon = styled.img`
   padding: 4px 6px;
 `
 
-const ClearSearch = styled.button`
-  height: 44px;
-  border: 4px solid #33302b;
-  background: transparent;
-  font-weight: 800;
-  border-radius: 10px;
-  font-size: 20px;
-  padding: 0 15px 6px;
-  &:focus {
-    outline: 0;
-  }
-  &:hover {
-    background: #f5d7d4;
-  }
-`
-
 const Category = styled.div``
 
 const CategoryList = styled.div`
@@ -180,7 +165,7 @@ const CategoryList = styled.div`
 
 const Tag = styled.div`
   border-radius: 7px;
-  border: 3px solid #33302b;
+  border: ${light.subBorder};
   font-weight: 700;
   padding: 1px 12px 5px;
   margin-right: 6px;

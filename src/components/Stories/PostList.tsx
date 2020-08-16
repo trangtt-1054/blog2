@@ -1,6 +1,7 @@
 import React, { FC } from "react"
 import PostCard from "./PostCard"
 import styled from "styled-components"
+import Button from "../primitive/Button"
 
 type Props = {
   myList: any
@@ -19,7 +20,7 @@ const PostList: FC<Props> = props => {
       </PostGrid>
       {hasMore ? (
         <div style={{ textAlign: "center", paddingTop: 30 }}>
-          <SeeMoreButton onClick={seeMore}>more rubbish</SeeMoreButton>
+          <Button text="more rubbish" onClick={seeMore} size="main" />
         </div>
       ) : null}
     </div>
@@ -32,21 +33,4 @@ const PostGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   grid-gap: 10px;
-`
-
-const SeeMoreButton = styled.button`
-  border: 4px solid #33302b;
-  background: transparent;
-  border-radius: 10px;
-  height: 44px;
-  font-weight: 800;
-  color: #33302b;
-  font-size: 20px;
-  padding: 0 15px 6px;
-  &:focus {
-    outline: 0;
-  }
-  &:hover {
-    background: #f5d7d4;
-  }
 `

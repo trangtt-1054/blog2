@@ -8,6 +8,7 @@ import { GlobalDispatchContext } from "../context/GlobalContextProvider"
 import GoBackButton from "../components/primitive/GoBackButton"
 import calendar from "../assets/elements/calendar-icon-grey.svg"
 import styled from "styled-components"
+import { common, light } from "../theme"
 
 const PostTemplate = (props: any) => {
   const dispatch = useContext(GlobalDispatchContext)
@@ -90,6 +91,7 @@ const Date = styled.div`
   font-size: 18px;
   font-weight: 300;
   align-items: center;
+  text-transform: lowercase;
   color: #87837c;
 
   img {
@@ -116,17 +118,15 @@ const Headline = styled.div`
   grid-row: 1 / span 2;
   grid-column: 2 / 3;
   text-align: center;
-  color: red;
   background: white;
-  border-radius: 17px;
+  border-radius: ${common.mainRadius};
   width: fit-content;
   margin: auto;
   height: 108px;
   display: flex;
   align-items: center;
-  vertical-align: middle;
   padding: 0 20px;
-  border: 3px solid #33302b;
+  border: ${light.subBorder};
   z-index: 10;
   max-width: 500px;
   h2 {
@@ -136,9 +136,8 @@ const Headline = styled.div`
 
 const FeatureImage = styled.div`
   width: 80%;
-  top: 10px;
-  border-radius: 10px;
-  border: 3px solid #33302b;
+  border-radius: ${common.subRadius};
+  border: ${light.subBorder};
   overflow: hidden;
   text-align: center;
   margin: auto;

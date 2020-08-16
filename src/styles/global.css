@@ -16,6 +16,10 @@
       url("../../static/fonts/dosis/Dosis-SemiBold.woff2") format("woff2");
 }
 
+html {
+  overflow-y: auto;
+}
+
 html,
 body,
 h1,
@@ -32,6 +36,16 @@ button,
 a {
   color: #33302b;
   text-decoration: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+  border: 0;
+  background: transparent;
 }
 
 ::-webkit-scrollbar {

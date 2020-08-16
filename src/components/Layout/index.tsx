@@ -1,6 +1,7 @@
 import React, { FC, useContext } from "react"
 import Header from "../Header"
 import { GlobalStateContext } from "../../context/GlobalContextProvider"
+import { common, light } from "../../theme"
 import styled from "styled-components"
 
 type Props = {
@@ -27,22 +28,28 @@ export default Layout
 
 const PageLayout = styled.div`
   padding-top: 30px;
-  /* padding: 50px 200px; */
+  --stripe: #cfd8dc;
+  --bg: #e1e1e1;
+  background: linear-gradient(135deg, var(--bg) 25%, transparent 25%) -50px 0,
+    linear-gradient(225deg, var(--bg) 25%, transparent 25%) -50px 0,
+    linear-gradient(315deg, var(--bg) 25%, transparent 25%),
+    linear-gradient(45deg, var(--bg) 25%, transparent 25%);
+  background-size: 100px 100px;
+  background-color: var(--stripe);
+  height: 100vh;
 `
 
 const Container = styled.div`
-  /* max-height: 75vh; */
   margin: auto;
   max-width: 80%;
-  /* margin: 4vh auto 0; */
   position: relative;
 `
 
 const Page = styled.div`
   background: #fbf5e6;
-  border: 4px solid #33302b;
+  border: ${light.mainBorder};
   height: 87vh;
-  border-radius: 17px;
+  border-radius: ${common.mainRadius};
   overflow: hidden;
   padding: 30px 25px 30px 30px;
 `
