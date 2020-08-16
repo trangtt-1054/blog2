@@ -6,8 +6,11 @@ import {
   GlobalStateContext,
 } from "../../context/GlobalContextProvider"
 import searchIcon from "../../assets/elements/search-icon.svg"
-import goBackIcon from "../../assets/elements/go-back-icon.svg"
-import { Link } from "gatsby"
+import GoBackButton from "../../components/primitive/GoBackButton"
+import Button from "../../components/primitive/Button"
+import TagItem from "../primitive/TagItem"
+import { light, common } from "../../theme"
+import { size } from "../../theme/size"
 
 type Props = {
   posts: any
@@ -23,7 +26,7 @@ const PostPageContainer: FC<Props> = props => {
   const { posts, pathContext } = props
   const tagList: string[] = []
 
-  posts.forEach(post =>
+  posts.forEach((post: any) =>
     post.node.frontmatter.tags.forEach(
       (tag: string) => !tagList.includes(tag) && tagList.push(tag)
     )
@@ -82,7 +85,7 @@ const PostPageContainer: FC<Props> = props => {
             />
             <SearchIcon src={searchIcon} alt="search icon" />
           </SearchWrapper>
-          <ClearSearch onClick={handleClearSearch}>clear</ClearSearch>
+          <Button text="clear" size="main" onClick={handleClearSearch} />
         </SearchArea>
         <div>
           {state.searchTerm && `Search results for "${state.searchTerm}"`}
@@ -91,17 +94,12 @@ const PostPageContainer: FC<Props> = props => {
           {pathContext ? (
             <div>
               <p>Rubbish stuff about {`"${pathContext}"`}</p>
-              <GoBackBtn to="/stories">
-                <img src={goBackIcon} alt="back icon" />
-                <p style={{ marginBottom: 5 }}>all posts</p>
-              </GoBackBtn>
+              <GoBackButton />
             </div>
           ) : (
             <CategoryList>
               {tagList.map(tag => (
-                <Tag>
-                  <Link to={`/stories/tags/${tag}`}>#{tag}</Link>
-                </Tag>
+                <TagItem text={tag} />
               ))}
             </CategoryList>
           )}
@@ -120,6 +118,9 @@ const PageWrapper = styled.div`
   display: grid;
   grid-template-columns: 2fr 5fr;
   height: 100%;
+  /* ${size("xl")} {
+    grid-template-columns: 3fr 7fr;
+  } */
 `
 
 const SideBar = styled.div`
@@ -134,19 +135,17 @@ const SearchArea = styled.div`
 
 const SearchWrapper = styled.div`
   display: flex;
-  border: 4px solid #33302b;
+  border: ${light.mainBorder};
   height: 44px;
   width: 215px;
-  border-radius: 10px;
+  border-radius: ${common.subRadius};
   padding-left: 10px;
   margin-right: 10px;
 `
 const StyledInput = styled.input`
+  outline: none;
   border: 0;
   background: transparent;
-  &:focus {
-    outline: none;
-  }
   font-style: italic;
   color: #87837c;
   font-weight: 600;
@@ -158,61 +157,11 @@ const SearchIcon = styled.img`
   padding: 4px 6px;
 `
 
-const ClearSearch = styled.button`
-  height: 44px;
-  border: 4px solid #33302b;
-  background: transparent;
-  font-weight: 800;
-  border-radius: 10px;
-  font-size: 20px;
-  padding: 0 15px 6px;
-  &:focus {
-    outline: 0;
-  }
-  &:hover {
-    background: #f5d7d4;
-  }
-`
-
-const GoBackBtn = styled(Link)`
-  width: fit-content;
-  height: 44px;
-  border: 4px solid #33302b;
-  background: transparent;
-  font-weight: 800;
-  border-radius: 10px;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  padding: 0 15px;
-  /* padding: 0 15px 6px 13px; */
-  img {
-    margin-right: 21px;
-    margin-bottom: 0;
-    height: 20px;
-  }
-  &:focus {
-    outline: 0;
-  }
-  &:hover {
-    background: #f5d7d4;
-  }
-`
-
 const Category = styled.div``
 
 const CategoryList = styled.div`
   display: flex;
   flex-wrap: wrap;
-`
-
-const Tag = styled.div`
-  border-radius: 7px;
-  border: 3px solid #33302b;
-  font-weight: 700;
-  padding: 1px 12px 5px;
-  margin-right: 6px;
-  margin-bottom: 6px;
 `
 
 const PostsArea = styled.div`

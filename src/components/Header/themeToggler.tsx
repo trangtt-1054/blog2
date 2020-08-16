@@ -1,6 +1,7 @@
 import React, { FC, useContext } from "react"
 import styled from "styled-components"
 import { GlobalDispatchContext } from "../../context/GlobalContextProvider"
+import { light } from "../../theme"
 
 type Props = {
   theme: string
@@ -53,8 +54,8 @@ const CheckBoxLabel = styled.label`
   width: 50px;
   height: 20px;
   border-radius: 15px;
-  background: #fbf5e6;
-  border: 4px solid #33302b;
+  background: ${light.baseColor};
+  border: ${light.mainBorder};
   cursor: pointer;
   &::after {
     content: "";
@@ -65,8 +66,7 @@ const CheckBoxLabel = styled.label`
     margin: -8px;
     margin-left: -5px;
     background: #f5d7d4;
-    border: 4px solid #33302b;
-    /* box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2); */
+    border: ${light.mainBorder};
     transition: 0.2s;
   }
 `
@@ -77,7 +77,7 @@ const CheckBox = styled.input`
   width: 42px;
   height: 26px;
   &:checked + ${CheckBoxLabel} {
-    background: #efbbcf;
+    background: ${light.accentColor};
     &::after {
       content: "";
       display: block;

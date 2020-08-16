@@ -13,6 +13,12 @@ import inactiveTab from "../../assets/elements/inactive-tab.svg"
 import activeTab from "../../assets/elements/active-tab.svg"
 import activeTabDragging from "../../assets/elements/active-tab-dragging.svg"
 import inactiveDragging from "../../assets/elements/inactive-tab-dragging.svg"
+import { light } from "../../theme"
+
+type TabProps = {
+  active: boolean
+  isDragging: boolean
+}
 
 const reorder = (list: TabInfo[], startIndex: number, endIndex: number) => {
   const result = Array.from(list)
@@ -20,21 +26,6 @@ const reorder = (list: TabInfo[], startIndex: number, endIndex: number) => {
   result.splice(endIndex, 0, removed)
   return result
 }
-
-const grid = 8
-
-const getTabItemStyle = (
-  isDragging: boolean,
-  draggableStyle: any,
-  index: number
-) => ({
-  userSelect: "none",
-  //background: isDragging ? "#96bb7c" : "#eebb4d",
-  //background: colors[index % colors.length],
-  ...draggableStyle,
-  textTransform: "uppercase",
-  fontWeight: 600,
-})
 
 const getListStyle = (isDraggingOver: boolean) => ({
   display: "flex",
@@ -131,7 +122,7 @@ const Header: FC<Props> = props => {
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  background: ${({ theme }) => (theme === "light" ? "white" : "#241663")};
+  background: ${({ theme }) => (theme === "light" ? "transparent" : "#241663")};
   align-items: center;
 `
 
@@ -140,7 +131,7 @@ const TabsWrapper = styled.div`
   padding-left: 50px;
 `
 
-const TabDiv = styled.div`
+const TabDiv = styled.div<TabProps>`
   width: 135px;
   height: 46px;
   text-align: center;
@@ -163,15 +154,13 @@ const TabTitle = styled.div`
 const TabIcon = styled.div`
   width: 16px;
   height: 16px;
-  border: 4px solid #33302b;
-  background: #eebd7f;
+  border: ${light.mainBorder};
   border-radius: 30px;
   margin-right: 6px;
   background: ${({ color }) => color};
 `
 
 const MyLink = styled(Link)`
-  text-decoration: none;
   color: #33302b;
   padding-bottom: 3px;
 `
