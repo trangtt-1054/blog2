@@ -2,6 +2,7 @@ import React, { FC, useContext } from "react"
 import Header from "../Header"
 //import { GlobalStateContext } from "../../context/GlobalContextProvider"
 import { common, light } from "../../theme"
+import { size } from "../../theme/size"
 import styled from "styled-components"
 
 type Props = {
@@ -28,8 +29,8 @@ export default Layout
 
 const PageLayout = styled.div`
   padding-top: 30px;
-  --stripe: #cfd8dc;
-  --bg: #e1e1e1;
+  --stripe: #fbf5e6;
+  --bg: #f5d7d4;
   background: linear-gradient(135deg, var(--bg) 25%, transparent 25%) -50px 0,
     linear-gradient(225deg, var(--bg) 25%, transparent 25%) -50px 0,
     linear-gradient(315deg, var(--bg) 25%, transparent 25%),
@@ -41,8 +42,12 @@ const PageLayout = styled.div`
 
 const Container = styled.div`
   margin: auto;
-  max-width: 80%;
+  max-width: 85%;
   position: relative;
+
+  ${size("xl")} {
+    max-width: 90%;
+  }
 `
 
 const Page = styled.div`

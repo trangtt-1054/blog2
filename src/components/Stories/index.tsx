@@ -10,6 +10,7 @@ import GoBackButton from "../../components/primitive/GoBackButton"
 import Button from "../../components/primitive/Button"
 import TagItem from "../primitive/TagItem"
 import { light, common } from "../../theme"
+import { size } from "../../theme/size"
 
 type Props = {
   posts: any
@@ -117,6 +118,9 @@ const PageWrapper = styled.div`
   display: grid;
   grid-template-columns: 2fr 5fr;
   height: 100%;
+  /* ${size("xl")} {
+    grid-template-columns: 3fr 7fr;
+  } */
 `
 
 const SideBar = styled.div`
