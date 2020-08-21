@@ -36,6 +36,6 @@ const PostGrid = styled.div`
   grid-gap: 10px;
 
   ${size("xl")} {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
 `

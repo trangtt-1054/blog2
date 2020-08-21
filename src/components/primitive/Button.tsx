@@ -19,6 +19,7 @@ const Button: FC<Props> = ({ text, onClick, size }) => {
 export default Button
 
 const Wrapper = styled.button<{ size: string }>`
+  width: fit-content;
   border: ${light.mainBorder};
   background: transparent;
   border-radius: ${common.subRadius};
