@@ -116,11 +116,9 @@ export default PostPageContainer
 
 const PageWrapper = styled.div`
   display: grid;
-  grid-template-columns: 2fr 5fr;
+  grid-template-columns: 2fr 6fr;
   height: 100%;
-  /* ${size("xl")} {
-    grid-template-columns: 3fr 7fr;
-  } */
+  grid-column-gap: 10px;
 `
 
 const SideBar = styled.div`
@@ -131,6 +129,9 @@ const SideBar = styled.div`
 const SearchArea = styled.div`
   display: flex;
   margin-bottom: 100px;
+  ${size("xl")} {
+    flex-direction: column;
+  }
 `
 
 const SearchWrapper = styled.div`
@@ -141,6 +142,7 @@ const SearchWrapper = styled.div`
   border-radius: ${common.subRadius};
   padding-left: 10px;
   margin-right: 10px;
+  margin-bottom: 16px;
 `
 const StyledInput = styled.input`
   outline: none;
