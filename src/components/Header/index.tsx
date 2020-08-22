@@ -13,7 +13,11 @@ import inactiveTab from "../../assets/elements/inactive-tab.svg"
 import activeTab from "../../assets/elements/active-tab.svg"
 import activeTabDragging from "../../assets/elements/active-tab-dragging.svg"
 import inactiveDragging from "../../assets/elements/inactive-tab-dragging.svg"
+import activeTabSp from "../../assets/elements/active-tab-sp.svg"
+import inactiveTabSp from "../../assets/elements/inactive-tab-sp.svg"
 import { light } from "../../theme"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import { size } from "../../theme/size"
 
 type TabProps = {
   active: boolean
@@ -36,6 +40,8 @@ type Props = {}
 const Header: FC<Props> = props => {
   const dispatch = useContext(GlobalDispatchContext)
   const state = useContext(GlobalStateContext)
+  const isMobile = useMediaQuery(size("xs"))
+  console.log(isMobile)
 
   const handleDragEnd = (result: DropResult) => {
     if (!result.destination) {
@@ -52,8 +58,10 @@ const Header: FC<Props> = props => {
 
   const getTabImg = (active: boolean, isDragging: boolean) => {
     if (active) {
+      if (isMobile) return activeTabSp
       return isDragging ? activeTabDragging : activeTab
     } else {
+      if (isMobile) return inactiveTabSp
       return isDragging ? inactiveDragging : inactiveTab
     }
   }
@@ -124,11 +132,20 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   background: ${({ theme }) => (theme === "light" ? "transparent" : "#241663")};
   align-items: center;
+  ${size("xs")} {
+    justify-content: center;
+  }
+  ${size("xs", "md")} {
+    min-width: 700px;
+  }
 `
 
 const TabsWrapper = styled.div`
   display: flex;
   padding-left: 50px;
+  ${size("xs")} {
+    padding: 0;
+  }
 `
 
 const TabDiv = styled.div<TabProps>`
@@ -140,6 +157,14 @@ const TabDiv = styled.div<TabProps>`
     active || isDragging ? "visible" : "hidden"};
   font-size: 22px;
   font-weight: 800;
+  ${size("xs")} {
+    width: 88px;
+    height: 37px;
+  }
+  ${size("xs")} {
+    width: 80px;
+    height: 33px;
+  }
 `
 
 const TabTitle = styled.div`
@@ -149,6 +174,9 @@ const TabTitle = styled.div`
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
+  ${size("xs")} {
+    font-size: 15px;
+  }
 `
 
 const TabIcon = styled.div`
@@ -158,6 +186,11 @@ const TabIcon = styled.div`
   border-radius: 30px;
   margin-right: 6px;
   background: ${({ color }) => color};
+  ${size("xs")} {
+    width: 10px;
+    height: 10px;
+    border: ${light.subBorder};
+  }
 `
 
 const MyLink = styled(Link)`

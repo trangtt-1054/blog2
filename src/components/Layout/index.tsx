@@ -38,6 +38,9 @@ const PageLayout = styled.div`
   background-size: 100px 100px;
   background-color: var(--stripe);
   height: 100vh;
+  ${size("xs", "md")} {
+    min-width: 750px;
+  }
 `
 
 const Container = styled.div`
@@ -48,6 +51,10 @@ const Container = styled.div`
   ${size("xl")} {
     max-width: 90%;
   }
+  ${size("xs", "md")} {
+    max-width: 95%;
+    min-width: 700px;
+  }
 `
 
 const Page = styled.div`
@@ -57,6 +64,10 @@ const Page = styled.div`
   border-radius: ${common.mainRadius};
   overflow: hidden;
   padding: 30px 25px 30px 30px;
+  ${size("xs")} {
+    border: ${light.subBorder};
+    border-radius: ${common.subRadius};
+  }
 `
 const PageContent = styled.div`
   /* overflow-y: scroll; */

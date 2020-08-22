@@ -11,6 +11,7 @@ const light = {
   accentColor: "#f5d7d4",
   mainBorder: "4px solid #342b38",
   subBorder: "3px solid #342b38",
+  subBorder2: "2.8px solid #342b38",
 }
 
 const dark = {}

@@ -2,6 +2,7 @@ import React, { FC, useContext } from "react"
 import styled from "styled-components"
 import { GlobalDispatchContext } from "../../context/GlobalContextProvider"
 import { light } from "../../theme"
+import { size } from "../../theme/size"
 
 type Props = {
   theme: string
@@ -34,6 +35,13 @@ const ThemeToggler: FC<Props> = props => {
 const TogglerWrapper = styled.div`
   display: flex;
   align-items: center;
+  ${size("lg")} {
+    padding-right: 40px;
+    padding-top: 10px;
+  }
+  ${size("xs")} {
+    display: none;
+  }
 `
 const ThemeName = styled.span`
   color: ${({ theme }) => (theme === "light" ? "#241663" : "#efbbcf")};
@@ -41,6 +49,9 @@ const ThemeName = styled.span`
   color: #33302b;
   font-weight: 800;
   padding-bottom: 17px;
+  ${size("lg")} {
+    display: none;
+  }
 `
 
 const CheckBoxWrapper = styled.div`
