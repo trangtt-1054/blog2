@@ -1,6 +1,7 @@
 import React, { FC } from "react"
 import styled from "styled-components"
 import { light, common } from "../../theme"
+import { size } from "../../theme/size"
 
 type Props = {
   text: string
@@ -29,5 +30,9 @@ const Wrapper = styled.button<{ size: string }>`
   font-weight: ${({ size }) => (size === "main" ? "800" : "700")};
   &:hover {
     background: ${light.accentColor};
+  }
+  ${size("xs")} {
+    border: ${light.subBorder};
+    border-radius: ${common.subRadius2};
   }
 `

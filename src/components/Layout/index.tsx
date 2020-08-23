@@ -41,6 +41,9 @@ const PageLayout = styled.div`
   ${size("xs", "md")} {
     min-width: 750px;
   }
+  ${size("xs")} {
+    padding-top: 15px;
+  }
 `
 
 const Container = styled.div`
@@ -55,6 +58,9 @@ const Container = styled.div`
     max-width: 95%;
     min-width: 700px;
   }
+  ${size("xs")} {
+    max-width: 95%;
+  }
 `
 
 const Page = styled.div`
@@ -67,6 +73,8 @@ const Page = styled.div`
   ${size("xs")} {
     border: ${light.subBorder};
     border-radius: ${common.subRadius};
+    height: 91vh;
+    padding: 15px 10px 15px 15px;
   }
 `
 const PageContent = styled.div`

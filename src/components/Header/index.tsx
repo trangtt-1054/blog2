@@ -158,12 +158,8 @@ const TabDiv = styled.div<TabProps>`
   font-size: 22px;
   font-weight: 800;
   ${size("xs")} {
-    width: 88px;
-    height: 37px;
-  }
-  ${size("xs")} {
-    width: 80px;
-    height: 33px;
+    width: 78px;
+    height: 31px;
   }
 `
 
@@ -175,7 +171,7 @@ const TabTitle = styled.div`
   display: flex;
   align-items: center;
   ${size("xs")} {
-    font-size: 15px;
+    font-size: 17px;
   }
 `
 
@@ -187,9 +183,10 @@ const TabIcon = styled.div`
   margin-right: 6px;
   background: ${({ color }) => color};
   ${size("xs")} {
-    width: 10px;
+    /* width: 10px;
     height: 10px;
-    border: ${light.subBorder};
+    border: ${light.subBorder}; */
+    display: none;
   }
 `
 
