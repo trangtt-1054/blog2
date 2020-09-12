@@ -20,7 +20,6 @@ type Props = {
 const perPage = 3
 
 const PostPageContainer: FC<Props> = props => {
-  console.log(props)
   const dispatch = useContext(GlobalDispatchContext)
   const state = useContext(GlobalStateContext)
   const { posts, pathContext } = props
@@ -99,7 +98,7 @@ const PostPageContainer: FC<Props> = props => {
           ) : (
             <CategoryList>
               {tagList.map(tag => (
-                <TagItem text={tag} />
+                <TagItem key={tag} text={tag} />
               ))}
             </CategoryList>
           )}
@@ -119,11 +118,19 @@ const PageWrapper = styled.div`
   grid-template-columns: 2fr 6fr;
   height: 100%;
   grid-column-gap: 10px;
+  ${size("md")} {
+    grid-template-columns: 3fr 4fr;
+  }
+  ${size("xs")} {
+    display: block;
+  }
 `
 
 const SideBar = styled.div`
   grid-column: 1 / 2;
   overflow: hidden;
+  ${size("xs")} {
+  }
 `
 
 const SearchArea = styled.div`
@@ -132,17 +139,26 @@ const SearchArea = styled.div`
   ${size("xl")} {
     flex-direction: column;
   }
+  ${size("xs")} {
+    flex-direction: row;
+    margin-bottom: 0;
+    justify-content: space-between;
+  }
 `
 
 const SearchWrapper = styled.div`
   display: flex;
   border: ${light.mainBorder};
   height: 44px;
-  width: 215px;
   border-radius: ${common.subRadius};
   padding-left: 10px;
   margin-right: 10px;
   margin-bottom: 16px;
+  ${size("xs")} {
+    border: ${light.subBorder};
+    border-radius: ${common.subRadius2};
+    width: auto;
+  }
 `
 const StyledInput = styled.input`
   outline: none;
@@ -170,4 +186,6 @@ const PostsArea = styled.div`
   grid-column: 2;
   overflow-y: scroll;
   padding-right: 20px;
+  ${size("xs")} {
+  }
 `
