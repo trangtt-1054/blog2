@@ -34,5 +34,9 @@ const Wrapper = styled.button<{ size: string }>`
   ${size("xs")} {
     border: ${light.subBorder};
     border-radius: ${common.subRadius2};
+    height: 37px;
+    font-size: 18px;
+    padding: 0 15px 4px;
+    font-weight: 700;
   }
 `

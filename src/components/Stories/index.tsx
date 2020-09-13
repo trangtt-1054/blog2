@@ -123,6 +123,21 @@ const PageWrapper = styled.div`
   }
   ${size("xs")} {
     display: block;
+    overflow: auto;
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #f5d7d4;
+      border-radius: 10px;
+      border: none;
+    }
   }
 `
 
@@ -143,6 +158,7 @@ const SearchArea = styled.div`
     flex-direction: row;
     margin-bottom: 0;
     justify-content: space-between;
+    padding-right: 10px;
   }
 `
 
@@ -157,7 +173,9 @@ const SearchWrapper = styled.div`
   ${size("xs")} {
     border: ${light.subBorder};
     border-radius: ${common.subRadius2};
-    width: auto;
+    width: 100%;
+    height: 37px;
+    margin-bottom: 10px;
   }
 `
 const StyledInput = styled.input`
@@ -180,6 +198,9 @@ const Category = styled.div``
 const CategoryList = styled.div`
   display: flex;
   flex-wrap: wrap;
+  ${size("xs")} {
+    padding-bottom: 9px;
+  }
 `
 
 const PostsArea = styled.div`
@@ -187,5 +208,9 @@ const PostsArea = styled.div`
   overflow-y: scroll;
   padding-right: 20px;
   ${size("xs")} {
+    display: block;
+    width: 100%;
+    padding-right: 10px;
+    overflow-y: auto;
   }
 `

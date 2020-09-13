@@ -10,6 +10,7 @@ import TagItem from "../components/primitive/TagItem"
 import calendar from "../assets/elements/calendar-icon-grey.svg"
 import styled from "styled-components"
 import { common, light } from "../theme"
+import { size } from "../theme/size"
 
 const PostTemplate = (props: any) => {
   const dispatch = useContext(GlobalDispatchContext)
@@ -25,7 +26,7 @@ const PostTemplate = (props: any) => {
     <Layout location="/stories">
       <Wrapper>
         <MetaBar>
-          <GoBackButton />
+          <AllPostsButton />
           <Date>
             <img src={calendar} />
             {frontmatter.date}
@@ -50,6 +51,7 @@ const PostTemplate = (props: any) => {
           </Banner>
           <MDXProvider
             components={{
+              h2: props => <h2 {...props} style={{ fontSize: 22 }} />,
               a: (props: any) => (
                 <a
                   {...props}
@@ -57,10 +59,7 @@ const PostTemplate = (props: any) => {
                 />
               ),
               span: (props: any) => (
-                <span
-                  {...props}
-                  style={{ paddingBottom: 0, paddingRight: 30 }}
-                />
+                <span {...props} style={{ paddingBottom: 0 }} />
               ),
               img: props => (
                 <img
@@ -111,9 +110,36 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 200px auto;
   height: 100%;
+  overflow: auto;
+  ${size("xs")} {
+    display: block;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #f5d7d4;
+    border-radius: 10px;
+    border: none;
+  }
 `
 const MetaBar = styled.div`
   grid-column: 1 / 2;
+  ${size("xs")} {
+    display: block;
+    margin-bottom: 9px;
+  }
+`
+
+const AllPostsButton = styled(GoBackButton)`
+  ${size("xs")} {
+    display: none;
+  }
 `
 
 const Date = styled.div`
@@ -129,11 +155,18 @@ const Date = styled.div`
     margin-bottom: 0;
     margin-right: 10px;
   }
+
+  ${size("xs")} {
+    margin-top: 0;
+  }
 `
 const CategoryList = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-top: 30px;
+  ${size("xs")} {
+    margin-top: 10px;
+  }
 `
 
 const PostPage = styled.div`
@@ -141,13 +174,20 @@ const PostPage = styled.div`
   overflow-y: scroll;
   grid-column: 2 / 3;
   padding-right: 40px;
+  ${size("xs")} {
+    overflow: visible;
+    padding-right: 15px;
+  }
 `
 
 const Banner = styled.div`
   display: grid;
   grid-template-rows: 54px 54px auto;
-  grid-auto-columns: 60px auto 60px;
+  grid-auto-columns: 0px auto 0px;
   margin-bottom: 30px;
+  ${size("xs")} {
+    grid-template-rows: minmax(40px, 50px) minmax(40px, 50px) auto;
+  }
 `
 
 const Headline = styled.div`
@@ -166,12 +206,21 @@ const Headline = styled.div`
   z-index: 10;
   max-width: 500px;
   h2 {
-    margin-bottom: 0;
+    margin: 0 auto 0;
+  }
+  ${size("xs")} {
+    height: auto;
+    border-radius: ${common.subRadius};
+    width: 80%;
+    padding: 10px;
+    h2 {
+      font-size: 21px;
+    }
   }
 `
 
 const FeatureImage = styled.div`
-  width: 80%;
+  width: 70%;
   border-radius: ${common.subRadius};
   border: ${light.subBorder};
   overflow: hidden;
@@ -182,5 +231,9 @@ const FeatureImage = styled.div`
 
   img {
     z-index: 1;
+  }
+
+  ${size("xs")} {
+    width: 100%;
   }
 `

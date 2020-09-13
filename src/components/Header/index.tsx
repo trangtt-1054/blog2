@@ -13,8 +13,8 @@ import inactiveTab from "../../assets/elements/inactive-tab.svg"
 import activeTab from "../../assets/elements/active-tab.svg"
 import activeTabDragging from "../../assets/elements/active-tab-dragging.svg"
 import inactiveDragging from "../../assets/elements/inactive-tab-dragging.svg"
-import activeTabSp from "../../assets/elements/active-tab-sp.svg"
-import inactiveTabSp from "../../assets/elements/inactive-tab-sp.svg"
+import activeTabSp from "../../assets/elements/sp-active.svg"
+import inactiveTabSp from "../../assets/elements/sp-inactive.svg"
 import { light } from "../../theme"
 import useMediaQuery from "@material-ui/core/useMediaQuery"
 import { size } from "../../theme/size"
@@ -41,7 +41,6 @@ const Header: FC<Props> = props => {
   const dispatch = useContext(GlobalDispatchContext)
   const state = useContext(GlobalStateContext)
   const isMobile = useMediaQuery(size("xs"))
-  console.log(isMobile)
 
   const handleDragEnd = (result: DropResult) => {
     if (!result.destination) {
@@ -159,7 +158,7 @@ const TabDiv = styled.div<TabProps>`
   font-weight: 800;
   ${size("xs")} {
     width: 78px;
-    height: 31px;
+    height: 35px;
   }
 `
 
