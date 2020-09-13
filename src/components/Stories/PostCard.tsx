@@ -4,6 +4,7 @@ import TagList from "../TagList"
 import Img from "gatsby-image"
 import styled from "styled-components"
 import { light, common } from "../../theme"
+import { size } from "../../theme/size"
 
 type Props = {
   post: any
@@ -53,6 +54,9 @@ const Card = styled.div<{ span: number }>`
   flex-direction: column;
   border-radius: 10px;
   background: white;
+  ${size("xl")} {
+    border: ${light.subBorder};
+  }
 `
 
 const Thumb = styled.div`
