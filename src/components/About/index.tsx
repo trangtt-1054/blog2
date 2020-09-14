@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import styled from "styled-components"
 import cat from "./img/cat.jpeg"
 import trang from "./img/trang20.jpg"
@@ -6,9 +6,15 @@ import girl from "./img/girl.jpg"
 import NextIcon from "../../assets/elements/triangle-next.svg"
 import BackIcon from "../../assets/elements/triangle-back.svg"
 import HeartIcon from "../../assets/elements/heart.svg"
+import HeartFilledIcon from "../../assets/elements/heart_filled.svg"
 import CommentIcon from "../../assets/elements/comment.svg"
 import ShareIcon from "../../assets/elements/share.svg"
 import BookmarkIcon from "../../assets/elements/bookmark.svg"
+
+import {
+  GlobalLikeContext,
+  GlobalLikeDispatch,
+} from "../../context/GlobalLikeProvider"
 
 import { light, common } from "../../theme"
 import { size } from "../../theme/size"
@@ -23,6 +29,12 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css"
 
 const About = () => {
+  const state = useContext(GlobalLikeContext)
+  const dispatch = useContext(GlobalLikeDispatch)
+
+  console.log(state)
+  console.log("ahihi")
+
   return (
     <Root>
       <Left>
@@ -61,7 +73,12 @@ const About = () => {
           <ImgFooter>
             <Icons>
               <SocialIcons>
-                <img src={HeartIcon} alt="heart" />
+                <div
+                  onClick={() => dispatch(!state)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <img src={state ? HeartFilledIcon : HeartIcon} alt="heart" />
+                </div>
                 <img src={CommentIcon} alt="" />
                 <img src={ShareIcon} alt="heart" />
               </SocialIcons>
@@ -117,6 +134,12 @@ const HeaderIcon = styled.div`
   border-radius: 50px;
   border: ${light.subBorder};
   margin-right: 8px;
+  &:first-of-type {
+    cursor: pointer;
+    &:hover {
+      background: ${light.accentColor};
+    }
+  }
 `
 
 const ImgSlider = styled.div`

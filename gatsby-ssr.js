@@ -2,9 +2,15 @@
 
 import React from "react"
 import GlobalContextProvider from "./src/context/GlobalContextProvider"
+import GlobalLikeProvider from "./src/context/GlobalLikeProvider"
 
 export const wrapRootElement = ({ element }) => {
-  return <GlobalContextProvider> {element}</GlobalContextProvider>
+  return (
+    <GlobalContextProvider>
+      {" "}
+      <GlobalLikeProvider>{element}</GlobalLikeProvider>
+    </GlobalContextProvider>
+  )
 }
 
 //ban đầu wrap GlobalContextProvider ở Layout nhưng state ko persist nên chuyển qua đây
