@@ -10,7 +10,7 @@ import HeartFilledIcon from "../../assets/elements/heart_filled.svg"
 import CommentIcon from "../../assets/elements/comment.svg"
 import ShareIcon from "../../assets/elements/share.svg"
 import BookmarkIcon from "../../assets/elements/bookmark.svg"
-
+import BookmarkFilledIcon from "../../assets/elements/bookmark-filled.svg"
 import {
   GlobalLikeContext,
   GlobalLikeDispatch,
@@ -74,15 +74,26 @@ const About = () => {
             <Icons>
               <SocialIcons>
                 <div
-                  onClick={() => dispatch(!state)}
+                  onClick={() => dispatch({ type: "LIKE" })}
                   style={{ cursor: "pointer" }}
                 >
-                  <img src={state ? HeartFilledIcon : HeartIcon} alt="heart" />
+                  <img
+                    src={state.liked ? HeartFilledIcon : HeartIcon}
+                    alt="heart"
+                  />
                 </div>
                 <img src={CommentIcon} alt="" />
                 <img src={ShareIcon} alt="heart" />
               </SocialIcons>
-              <img src={BookmarkIcon} alt="bookmark" />
+              <div
+                onClick={() => dispatch({ type: "SAVE" })}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src={state.saved ? BookmarkFilledIcon : BookmarkIcon}
+                  alt="bookmark"
+                />
+              </div>
             </Icons>
             <Content>
               <Author>tranthutrang1702</Author>
